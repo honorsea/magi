@@ -4,6 +4,15 @@ import { Save, RotateCcw, Palette, Server, Bot, Activity, Database, Check, Alert
 
 type Tab = 'branding' | 'general' | 'llm' | 'agent' | 'simulation';
 
+const DEFAULT_MODEL_PRESETS = [
+  'gemini-2.5-flash-preview-04-17',
+  'gemini-2.5-pro-preview-05-06',
+  'gemini-2.0-flash',
+  'gemini-1.5-pro',
+  'gemini-1.5-flash',
+  'gemma-4-31b-it',
+];
+
 // ── Reusable field components ──────────────────────────────────────────────────
 
 const Field: React.FC<{ label: string; hint?: string; children: React.ReactNode }> = ({ label, hint, children }) => (
@@ -71,6 +80,7 @@ export const SettingsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('branding');
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ msg: string; ok: boolean } | null>(null);
+  const [newPreset, setNewPreset] = useState('');
 
   useEffect(() => { loadSettings(); }, []);
 
@@ -84,6 +94,32 @@ export const SettingsPage: React.FC = () => {
   };
 
   const set = (key: string, value: any) => setSettings(prev => ({ ...prev, [key]: value }));
+
+  const modelPresets: string[] = Array.isArray(settings['llm.model_presets'])
+    ? settings['llm.model_presets']
+    : DEFAULT_MODEL_PRESETS;
+
+  const addModelPreset = () => {
+    const normalized = newPreset.trim();
+    if (!normalized) return;
+    if (modelPresets.includes(normalized)) {
+      showToast('Model preset already exists', false);
+      return;
+    }
+    set('llm.model_presets', [...modelPresets, normalized]);
+    setNewPreset('');
+  };
+
+  const removeModelPreset = (index: number) => {
+    const next = modelPresets.filter((_, i) => i !== index);
+    set('llm.model_presets', next);
+  };
+
+  const renameModelPreset = (index: number, value: string) => {
+    const next = [...modelPresets];
+    next[index] = value;
+    set('llm.model_presets', next);
+  };
 
   const handleSave = async () => {
     setSaving(true);
@@ -226,17 +262,31 @@ export const SettingsPage: React.FC = () => {
               <TextInput value={settings['llm.api_key']} onChange={v => set('llm.api_key', v)} type="password" placeholder="AIzaSy…" />
             </Field>
             <Field label="Model" hint="Gemini model to use for the Cognitive Agent">
-              <SelectInput
-                value={settings['llm.model']}
-                onChange={v => set('llm.model', v)}
-                options={[
-                  { value: 'gemini-2.5-flash-preview-04-17', label: 'Gemini 2.5 Flash (recommended)' },
-                  { value: 'gemini-2.5-pro-preview-05-06',   label: 'Gemini 2.5 Pro (most capable)' },
-                  { value: 'gemini-2.0-flash',               label: 'Gemini 2.0 Flash' },
-                  { value: 'gemini-1.5-pro',                 label: 'Gemini 1.5 Pro' },
-                  { value: 'gemini-1.5-flash',               label: 'Gemini 1.5 Flash' },
-                ]}
-              />
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <select
+                  value={settings['llm.model'] ?? ''}
+                  onChange={e => set('llm.model', e.target.value)}
+                  style={{ flex: 1, padding: '8px 10px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg-secondary)', color: 'var(--text-primary)', fontSize: '13px' }}
+                >
+                  <option value="">Custom model…</option>
+                  {modelPresets.map(model => <option key={model} value={model}>{model}</option>)}
+                </select>
+                <TextInput value={settings['llm.model']} onChange={v => set('llm.model', v)} placeholder="Enter any model ID" />
+              </div>
+            </Field>
+            <Field label="Model Presets" hint="Saved model IDs shown in selectors. Add, remove, or rename presets.">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {modelPresets.map((model, idx) => (
+                  <div key={`${model}-${idx}`} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <TextInput value={model} onChange={v => renameModelPreset(idx, v)} placeholder="model-id" />
+                    <button onClick={() => removeModelPreset(idx)} style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg-secondary)', cursor: 'pointer' }}>Remove</button>
+                  </div>
+                ))}
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <TextInput value={newPreset} onChange={setNewPreset} placeholder="new model id" />
+                  <button onClick={addModelPreset} style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg-secondary)', cursor: 'pointer' }}>Add</button>
+                </div>
+              </div>
             </Field>
             <Field label="Temperature" hint="Generation temperature (0 = deterministic, 1 = creative). Recommended: 0.3–0.7">
               <TextInput value={settings['llm.temperature']} onChange={v => set('llm.temperature', parseFloat(v))} type="number" min="0" max="2" step="0.05" />

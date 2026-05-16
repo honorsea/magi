@@ -8,6 +8,7 @@ Default values are used when a key is not yet in the database.
 """
 
 import asyncio
+import re
 from typing import Any, Dict, List, Optional
 
 from magi.meta.services import db as _db
@@ -37,6 +38,15 @@ DEFAULTS: Dict[str, Any] = {
     # LLM (Google only)
     "llm.api_key":              "",
     "llm.model":                "gemini-2.5-flash-preview-04-17",
+    "llm.selected_model":       "gemini-2.5-flash-preview-04-17",
+    "llm.model_presets": [
+        "gemini-2.5-flash-preview-04-17",
+        "gemini-2.5-pro-preview-05-06",
+        "gemini-2.0-flash",
+        "gemini-1.5-pro",
+        "gemini-1.5-flash",
+        "gemma-4-31b-it",
+    ],
     "llm.temperature":          0.3,
 
     # Agent
@@ -65,6 +75,32 @@ DEFAULTS: Dict[str, Any] = {
 _cache: Dict[str, Any] = {}
 _loaded: bool = False
 _lock = asyncio.Lock()
+_MODEL_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$")
+
+
+def _validate_model_id(value: Any, key: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError(f"{key} must be a string")
+    model_id = value.strip()
+    if not model_id:
+        raise ValueError(f"{key} cannot be empty")
+    if not _MODEL_ID_RE.match(model_id):
+        raise ValueError(f"{key} has invalid format")
+    return model_id
+
+
+def validate_updates(updates: Dict[str, Any]) -> Dict[str, Any]:
+    normalized = dict(updates)
+    if "llm.model" in normalized:
+        normalized["llm.model"] = _validate_model_id(normalized["llm.model"], "llm.model")
+    if "llm.selected_model" in normalized:
+        normalized["llm.selected_model"] = _validate_model_id(normalized["llm.selected_model"], "llm.selected_model")
+    if "llm.model_presets" in normalized:
+        presets = normalized["llm.model_presets"]
+        if not isinstance(presets, list):
+            raise ValueError("llm.model_presets must be a list of strings")
+        normalized["llm.model_presets"] = [_validate_model_id(item, "llm.model_presets[]") for item in presets]
+    return normalized
 
 
 async def load() -> None:
@@ -94,6 +130,7 @@ async def set(key: str, value: Any) -> None:
 
 async def set_many(updates: Dict[str, Any]) -> None:
     """Set multiple setting values atomically."""
+    updates = validate_updates(updates)
     async with _lock:
         _cache.update(updates)
     await _db.set_many_settings(updates)
