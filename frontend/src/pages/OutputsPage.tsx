@@ -22,10 +22,10 @@ const formatDate = (ts: number) => {
 
 const FileIcon: React.FC<{ type: string; size?: number }> = ({ type, size = 16 }) => {
   switch (type) {
-    case 'csv': return <FileSpreadsheet size={size} color="hsl(142,65%,45%)" />;
+    case 'csv': return <FileSpreadsheet size={size} color="var(--accent-green)" />;
     case 'png':
-    case 'jpg': return <ImageIcon size={size} color="hsl(35,80%,50%)" />;
-    case 'json': return <FileJson size={size} color="hsl(262,70%,55%)" />;
+    case 'jpg': return <ImageIcon size={size} color="var(--accent-amber)" />;
+    case 'json': return <FileJson size={size} color="var(--accent-purple)" />;
     default: return <FileText size={size} color="var(--text-secondary)" />;
   }
 };
@@ -127,7 +127,7 @@ export const OutputsPage: React.FC = () => {
         </div>
 
         {error ? (
-          <div style={{ padding: '16px', background: 'hsl(0,60%,97%)', border: '1px solid hsl(0,60%,85%)', borderRadius: '8px', color: 'var(--accent-red)', display: 'flex', gap: '8px' }}>
+          <div style={{ padding: '16px', background: 'var(--status-error-bg)', border: '1px solid var(--status-error-border)', borderRadius: '8px', color: 'var(--accent-red)', display: 'flex', gap: '8px' }}>
             <AlertCircle size={18} /> Failed to load files: {error}
           </div>
         ) : loading && files.length === 0 ? (
@@ -226,7 +226,7 @@ export const OutputsPage: React.FC = () => {
             ) : previewContent ? (
               <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {previewContent.truncated && (
-                  <div style={{ background: 'hsl(38,100%,96%)', color: 'hsl(38,80%,40%)', padding: '8px 12px', fontSize: '12px', borderRadius: '4px', marginBottom: '12px', flexShrink: 0 }}>
+                  <div style={{ background: 'var(--status-warning-bg)', color: 'var(--status-warning-text)', padding: '8px 12px', fontSize: '12px', borderRadius: '4px', marginBottom: '12px', flexShrink: 0 }}>
                     File is large. Showing preview of the first 5000 characters. Download to see full content.
                   </div>
                 )}

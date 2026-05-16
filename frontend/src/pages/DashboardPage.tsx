@@ -125,10 +125,10 @@ const SimCard: React.FC<{
           {showError && (
             <pre style={{
               marginTop: '8px', padding: '10px', borderRadius: '4px',
-              background: 'hsl(0,60%,97%)', color: 'var(--accent-red)',
+              background: 'var(--status-error-bg)', color: 'var(--accent-red)',
               fontSize: '11px', fontFamily: 'var(--font-mono)',
               overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-all',
-              border: '1px solid hsl(0,60%,88%)'
+              border: '1px solid var(--status-error-border)'
             }}>
               {session.error_msg}
             </pre>

@@ -223,7 +223,7 @@ export const SettingsPage: React.FC = () => {
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <TextInput value={settings['branding.accent_color']} onChange={v => set('branding.accent_color', v)} placeholder="hsl(217, 91%, 50%)" />
                 <div style={{ width: '40px', height: '36px', borderRadius: '6px', border: '1px solid var(--border)',
-                  background: settings['branding.accent_color'] || 'hsl(217,91%,50%)', flexShrink: 0 }} />
+                  background: settings['branding.accent_color'] || 'var(--accent-blue)', flexShrink: 0 }} />
               </div>
             </Field>
             <Field label="Default Theme">

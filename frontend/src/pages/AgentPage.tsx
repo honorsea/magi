@@ -31,15 +31,15 @@ const ToolCallCard: React.FC<{ name: string; args?: any; result?: any }> = ({ na
   return (
     <div style={{
       margin: '6px 0', padding: '8px 12px', borderRadius: '6px',
-      background: 'hsl(262,60%,97%)', border: '1px solid hsl(262,60%,88%)',
+      background: 'var(--tool-card-bg)', border: '1px solid var(--tool-card-border)',
       fontSize: '12px', fontFamily: 'var(--font-mono)'
     }}>
       <button onClick={() => setOpen(v => !v)}
         style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, width: '100%',
-          display: 'flex', alignItems: 'center', gap: '6px', color: 'hsl(262,70%,40%)' }}>
+          display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--tool-card-text)' }}>
         <Wrench size={12} />
         <strong>{name}</strong>
-        {args && <span style={{ color: 'hsl(262,40%,60%)', fontWeight: 400 }}>
+        {args && <span style={{ color: 'var(--tool-card-subtle-text)', fontWeight: 400 }}>
           ({Object.entries(args).map(([k,v]) => `${k}=${JSON.stringify(v)}`).join(', ')})
         </span>}
         <span style={{ marginLeft: 'auto', opacity: 0.5 }}>
@@ -47,7 +47,7 @@ const ToolCallCard: React.FC<{ name: string; args?: any; result?: any }> = ({ na
         </span>
       </button>
       {open && result && (
-        <pre style={{ margin: '8px 0 0 0', padding: '8px', background: 'hsl(262,60%,94%)',
+        <pre style={{ margin: '8px 0 0 0', padding: '8px', background: 'var(--tool-card-pre-bg)',
           borderRadius: '4px', whiteSpace: 'pre-wrap', wordBreak: 'break-all',
           fontSize: '11px', maxHeight: '200px', overflowY: 'auto' }}>
           {JSON.stringify(result, null, 2)}
@@ -84,7 +84,7 @@ const MessageBubble: React.FC<{ msg: Message }> = ({ msg }) => {
       <div style={{
         width: '32px', height: '32px', borderRadius: '50%', flexShrink: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: isUser ? 'var(--accent-blue)' : 'hsl(262,70%,50%)',
+        background: isUser ? 'var(--accent-blue)' : 'var(--accent-purple)',
         color: 'white'
       }}>
         {isUser ? <User size={16} /> : <Bot size={16} />}
@@ -313,8 +313,8 @@ export const AgentPage: React.FC = () => {
 
         {/* Not MAGI mode warning */}
         {selectedSession && selectedSession.mode !== 'magi' && (
-          <div style={{ padding: '12px 16px', borderRadius: '8px', background: 'hsl(38,100%,96%)',
-            border: '1px solid hsl(38,80%,80%)', color: 'hsl(38,80%,30%)',
+          <div style={{ padding: '12px 16px', borderRadius: '8px', background: 'var(--status-warning-bg)',
+            border: '1px solid var(--status-warning-border)', color: 'var(--status-warning-text)',
             marginBottom: '16px', fontSize: '13px', flexShrink: 0 }}>
             ⚠ This simulation runs in <strong>baseline</strong> mode. The Cognitive Agent is only active in <strong>MAGI</strong> mode.
             Start a new simulation with mode set to "MAGI" to use the agent.
