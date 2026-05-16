@@ -1,0 +1,3140 @@
+[
+  {
+    "id": "time_motion_study",
+    "type": "lean_method",
+    "label": "Time & Motion Study",
+    "aka": [
+      "Work Measurement",
+      "MTM",
+      "Work Study"
+    ],
+    "description": "Systematic observation and quantification of every task component to establish standard times, identify non-value-adding elements, and set the empirical baseline for all subsequent improvement activities.",
+    "lean_category": "analysis",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 2,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "cycle_time_cw",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.1,
+        "priority": 4,
+        "description": "CW cycle time exceeded 10% above baseline."
+      },
+      {
+        "metric": "cycle_time_mw",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.1,
+        "priority": 4,
+        "description": "MW cycle time exceeded 10% above baseline."
+      },
+      {
+        "metric": "line_balance_ratio",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.75,
+        "priority": 5,
+        "description": "Line balance below 75% \u2014 clear imbalance detected."
+      },
+      {
+        "metric": "worker_idle_fraction",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0.35,
+        "priority": 3,
+        "description": "Worker idle fraction exceeds 35% \u2014 possible over-allocation."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "takt_time_param",
+        "direction": "recalibrate",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Align takt time to observed cycle times per station."
+      },
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Adjust pace to match measured human capacity."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "cycle_time_cw",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "cycle_time_mw",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "line_balance_ratio",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "worker_idle_fraction",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jit",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "human_centricity"
+    ],
+    "references": [
+      "Taylor (1911)",
+      "Gilbreth (1911)",
+      "Niebel & Freivalds (2003)"
+    ]
+  },
+  {
+    "id": "lean_production",
+    "type": "lean_method",
+    "label": "Lean Production System",
+    "aka": [
+      "TPS",
+      "Toyota Production System",
+      "Lean Manufacturing"
+    ],
+    "description": "A holistic sociotechnical system that maximises customer value while minimising waste by aligning all production activities, people, and processes around flow, pull, and perfection \u2014 the integrative container for all other Lean methods.",
+    "lean_category": "foundational",
+    "application_scope": [
+      "line_level",
+      "strategic"
+    ],
+    "time_to_implement": "long",
+    "complexity": 5,
+    "phase": "strategic",
+    "trigger_conditions": [
+      {
+        "metric": "oee",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.65,
+        "priority": 5,
+        "description": "OEE below 65% indicates systemic underperformance."
+      },
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.8,
+        "priority": 5,
+        "description": "Throughput below 80% baseline \u2014 systemic review needed."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Establish balanced pull-based production rate."
+      },
+      {
+        "parameter": "takt_time_param",
+        "direction": "recalibrate",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Set takt time to customer demand rate."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "lead_time",
+        "direction": "decrease",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "pli",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jit",
+      "jidoka_pillar",
+      "kaizen_pillar",
+      "respect_for_people",
+      "heijunka_pillar"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "sustainability",
+      "resilience",
+      "technology_synergy"
+    ],
+    "references": [
+      "Ohno (1988)",
+      "Womack & Jones (1996)",
+      "Liker (2004)"
+    ]
+  },
+  {
+    "id": "kaizen",
+    "type": "lean_method",
+    "label": "Kaizen",
+    "aka": [
+      "Continuous Incremental Improvement",
+      "Kaizen Event",
+      "Kaizen Blitz"
+    ],
+    "description": "A philosophy of continuous, small-step improvement driven by frontline workers using the PDCA cycle, applied daily to eliminate minor inefficiencies before they accumulate into systemic waste.",
+    "lean_category": "improvement",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "immediate",
+    "complexity": 2,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.92,
+        "priority": 3,
+        "description": "Throughput slips below 92% of baseline."
+      },
+      {
+        "metric": "cycle_time_cw",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.08,
+        "priority": 3,
+        "description": "CW cycle time crept 8% above baseline."
+      },
+      {
+        "metric": "fatigue_score",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 55,
+        "priority": 3,
+        "description": "Fatigue score above 55 \u2014 workload should be scrutinised."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "increase",
+        "suggested_delta": 0.05,
+        "requires_confirmation": false,
+        "rationale": "Small incremental pace improvement after waste removal."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "cycle_time_cw",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "cycle_time_mw",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "sustainability"
+    ],
+    "references": [
+      "Imai (1986)",
+      "Imai (1997)"
+    ]
+  },
+  {
+    "id": "muri_analysis",
+    "type": "lean_method",
+    "label": "Fatigue Analysis (Muri / Overburden Identification)",
+    "aka": [
+      "Muri",
+      "Overburden Analysis",
+      "Ergonomic Load Analysis",
+      "Workload Levelling"
+    ],
+    "description": "Systematic identification and elimination of physical or cognitive overburden placed on workers, analysed via physiological indicators (HR, blink rate, fatigue classification) and task demand profiles, to redesign work within safe ergonomic envelopes per Industry 5.0.",
+    "lean_category": "analysis",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 3,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "fatigue_classification",
+        "operator": "==",
+        "threshold_type": "categorical",
+        "threshold": "Fatigue Warning",
+        "priority": 5,
+        "description": "Edge layer fatigue classifier triggered Warning state."
+      },
+      {
+        "metric": "mean_hr",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.12,
+        "priority": 5,
+        "description": "Mean HR exceeds 12% above individual worker baseline."
+      },
+      {
+        "metric": "pli",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 160,
+        "priority": 5,
+        "description": "Physiological Load Index above 160 (substantially elevated)."
+      },
+      {
+        "metric": "fatigue_score",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 65,
+        "priority": 4,
+        "description": "Cumulative fatigue score above 65 threshold."
+      },
+      {
+        "metric": "interblink_interval_ms",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.3,
+        "priority": 3,
+        "description": "IBI increasing 30%+ above baseline \u2014 visual fatigue."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "worker_assignment",
+        "direction": "reassign",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Move fatigued worker to lower-demand station; assign fresh worker to high-demand station (MW)."
+      },
+      {
+        "parameter": "production_pace_factor",
+        "direction": "decrease",
+        "suggested_delta": -0.08,
+        "requires_confirmation": true,
+        "rationale": "Reduce pace to bring physiological load to safe threshold."
+      },
+      {
+        "parameter": "takt_time_param",
+        "direction": "increase",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Extend takt time to provide recovery intervals between cycles."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "pli",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "immediate",
+        "confidence": "high"
+      },
+      {
+        "kpi": "mean_hr",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "immediate",
+        "confidence": "high"
+      },
+      {
+        "kpi": "fatigue_score",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "decrease",
+        "magnitude": 1,
+        "timeframe": "immediate",
+        "confidence": "high",
+        "note": "Minor throughput cost accepted for safety-critical ergonomic intervention."
+      }
+    ],
+    "lean_pillar_alignment": [
+      "respect_for_people",
+      "heijunka_pillar"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "sustainability"
+    ],
+    "references": [
+      "Ohno (1988)",
+      "Shingo (1989)",
+      "ISO 9241-210 (2019)",
+      "Guimar\u00e3es & Ribeiro (2019)"
+    ]
+  },
+  {
+    "id": "root_cause_analysis",
+    "type": "lean_method",
+    "label": "Root-Cause Analysis / Cause & Effect Analysis",
+    "aka": [
+      "RCA",
+      "Ishikawa Diagram",
+      "Fishbone Diagram",
+      "6M Analysis"
+    ],
+    "description": "Structured diagnosis using cause-and-effect mapping (4M/6M categories: Man, Machine, Method, Material, Measurement, Environment) to trace observed defects or deviations to their true underlying causes, preventing symptom-only countermeasures.",
+    "lean_category": "problem_solving",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 2,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.5,
+        "priority": 5,
+        "description": "Defect rate 50% above baseline \u2014 root cause investigation required."
+      },
+      {
+        "metric": "mttr",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 15,
+        "priority": 4,
+        "description": "Mean repair time exceeds 15 min \u2014 failure mode poorly understood."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "medium",
+        "note": "Impact realised after countermeasures are implemented."
+      },
+      {
+        "kpi": "mtbf",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "medium",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "jidoka_pillar"
+    ],
+    "industry5_alignment": [
+      "technology_synergy"
+    ],
+    "references": [
+      "Ishikawa (1968)",
+      "ASQ Quality Handbook"
+    ]
+  },
+  {
+    "id": "five_whys",
+    "type": "lean_method",
+    "label": "5 Whys",
+    "aka": [
+      "Five Whys",
+      "Why-Why Analysis"
+    ],
+    "description": "An iterative interrogation technique that asks 'why' up to five times to penetrate symptom layers and reach the systemic root cause. Forms the analytical backbone of A3 reports, Kaizen events, and DMAIC Analyse phase.",
+    "lean_category": "problem_solving",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level",
+      "shift_level"
+    ],
+    "time_to_implement": "immediate",
+    "complexity": 1,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.3,
+        "priority": 4,
+        "description": "Defect rate 30% above baseline."
+      },
+      {
+        "metric": "mttr",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 15,
+        "priority": 4,
+        "description": "Repair time > 15 min."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "medium",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "mttr",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "medium",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [],
+    "references": [
+      "Ohno (1988)",
+      "Liker (2004)"
+    ]
+  },
+  {
+    "id": "fmea",
+    "type": "lean_method",
+    "label": "Failure Mode and Effects Analysis (FMEA)",
+    "aka": [
+      "FMEA",
+      "Process FMEA",
+      "D-FMEA",
+      "RPN Analysis",
+      "PFMEA"
+    ],
+    "description": "Proactive risk assessment methodology that enumerates potential failure modes, their effects, and their causes; ranks them by Risk Priority Number (RPN = Severity \u00d7 Occurrence \u00d7 Detectability); and drives preventive action plans before failures manifest.",
+    "lean_category": "problem_solving",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "medium",
+    "complexity": 4,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.2,
+        "priority": 5,
+        "description": "Defect rate 20% above baseline \u2014 risk assessment required."
+      },
+      {
+        "metric": "safety_incident_count",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0,
+        "priority": 5,
+        "description": "Any safety incident triggers FMEA."
+      },
+      {
+        "metric": "mtbf",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.8,
+        "priority": 4,
+        "description": "MTBF degraded to 80% of baseline."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "maintenance_interval_products",
+        "direction": "decrease",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Reduce maintenance interval for highest-RPN failure modes."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "first_pass_yield",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "mtbf",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "resilience"
+    ],
+    "references": [
+      "IEC 60812 (2018)",
+      "AIAG & VDA FMEA Handbook (2019)"
+    ]
+  },
+  {
+    "id": "muda_elimination",
+    "type": "lean_method",
+    "label": "Waste (Muda) Elimination",
+    "aka": [
+      "Muda",
+      "7 Wastes",
+      "8 Wastes",
+      "TIMWOODS",
+      "Non-Value-Add Elimination"
+    ],
+    "description": "Systematic identification and removal of the eight categories of non-value-adding activity: Transportation, Inventory, Motion, Waiting, Overproduction, Overprocessing, Defects, and underutilised Skills (TIMWOODS), to maximise the fraction of pure value-adding time.",
+    "lean_category": "improvement",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "medium",
+    "complexity": 3,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "worker_idle_fraction",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0.3,
+        "priority": 4,
+        "description": "30%+ idle fraction indicates significant waiting waste."
+      },
+      {
+        "metric": "lead_time",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.2,
+        "priority": 4,
+        "description": "Lead time 20% above baseline \u2014 non-value-add time accumulated."
+      },
+      {
+        "metric": "oee",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.75,
+        "priority": 4,
+        "description": "OEE below 75% \u2014 significant waste present in system."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "increase",
+        "suggested_delta": 0.08,
+        "requires_confirmation": false,
+        "rationale": "Waste removal frees capacity enabling pace increase."
+      },
+      {
+        "parameter": "takt_time_param",
+        "direction": "decrease",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Shorter cycle time after waste removal enables tighter takt."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "lead_time",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "worker_idle_fraction",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "medium",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jit",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "sustainability"
+    ],
+    "references": [
+      "Ohno (1988)",
+      "Womack & Jones (1996)",
+      "Liker (2004)"
+    ]
+  },
+  {
+    "id": "learning_curve_optimization",
+    "type": "lean_method",
+    "label": "Learning Curve Optimization",
+    "aka": [
+      "Experience Curve",
+      "Wright's Law Application",
+      "Production Learning"
+    ],
+    "description": "Application of Wright's Law and cumulative-production experience models to anticipate, track, and accelerate the worker performance improvement trajectory; used to calibrate ramp-up expectations and detect workers who plateau early or exhibit faster-than-expected habituation.",
+    "lean_category": "analysis",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "medium",
+    "complexity": 3,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "session_number",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 5,
+        "priority": 2,
+        "description": "Early sessions \u2014 learning effects are dominant."
+      },
+      {
+        "metric": "cycle_time_cw",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.15,
+        "priority": 3,
+        "description": "Cycle time 15% above steady-state baseline."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "increase",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Gradually increase pace as learning curve flattens toward steady-state."
+      },
+      {
+        "parameter": "worker_assignment",
+        "direction": "reassign",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Assign most experienced worker to bottleneck station."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "cycle_time_cw",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "pli",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "medium",
+        "confidence": "medium",
+        "note": "Experienced workers show lower HR for same task intensity."
+      }
+    ],
+    "lean_pillar_alignment": [
+      "respect_for_people",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "human_centricity"
+    ],
+    "references": [
+      "Wright (1936)",
+      "Argote & Epple (1990)",
+      "Dar-El (2000)"
+    ]
+  },
+  {
+    "id": "continuous_autonomous_improvement",
+    "type": "lean_method",
+    "label": "Continuous & Autonomous Improvement",
+    "aka": [
+      "AI-Driven Kaizen",
+      "Cognitive Kaizen",
+      "Self-Improving System",
+      "Autonomous Kaizen"
+    ],
+    "description": "An AI-augmented Kaizen philosophy in which agentic systems autonomously detect performance deviations, propose and simulate countermeasures via the digital twin, and deploy approved changes without waiting for scheduled improvement cycles \u2014 the operational mode of MAGI Layer 4.",
+    "lean_category": "improvement",
+    "application_scope": [
+      "line_level",
+      "strategic"
+    ],
+    "time_to_implement": "long",
+    "complexity": 5,
+    "phase": "strategic",
+    "trigger_conditions": [
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.93,
+        "priority": 3,
+        "description": "Any throughput deviation triggers autonomous review."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Continuously calibrate based on real-time KPI feedback."
+      },
+      {
+        "parameter": "worker_assignment",
+        "direction": "reassign",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Dynamically reassign based on fatigue and skill profiles."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "pli",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "technology_synergy",
+      "resilience",
+      "sustainability"
+    ],
+    "references": [
+      "European Commission (2021)",
+      "Nahavandi (2019)",
+      "Rosen et al. (2015)"
+    ]
+  },
+  {
+    "id": "sqdcm",
+    "type": "lean_method",
+    "label": "SQDCM Daily Management Dashboard",
+    "aka": [
+      "SQDC",
+      "Safety-Quality-Delivery-Cost-Morale",
+      "Daily Management Board"
+    ],
+    "description": "A five-dimensional daily management framework tracking Safety, Quality, Delivery, Cost, and Morale KPIs at shift level, providing immediate visibility against targets and routing deviations to the correct corrective methodology for each dimension.",
+    "lean_category": "monitoring",
+    "application_scope": [
+      "line_level",
+      "shift_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 1,
+    "phase": "control",
+    "trigger_conditions": [
+      {
+        "metric": "oee",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.75,
+        "priority": 3,
+        "description": "OEE below 75% threshold."
+      },
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.9,
+        "priority": 3,
+        "description": "Throughput 10% below baseline."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "jidoka_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity"
+    ],
+    "references": [
+      "Mann (2005)",
+      "Liker & Meier (2006)"
+    ]
+  },
+  {
+    "id": "five_s",
+    "type": "lean_method",
+    "label": "5S Workplace Organisation",
+    "aka": [
+      "5S",
+      "Sort-Set-Shine-Standardize-Sustain",
+      "6S (with Safety)"
+    ],
+    "description": "A systematic workplace organisation method using five sequential steps \u2014 Sort (Seiri), Set in Order (Seiton), Shine (Seiso), Standardize (Seiketsu), Sustain (Shitsuke) \u2014 to eliminate clutter, create visual standards, and establish the physical foundation for Lean improvement.",
+    "lean_category": "foundational",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 1,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "safety_incident_count",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0,
+        "priority": 4,
+        "description": "Any safety incident may indicate disorganised workstation."
+      },
+      {
+        "metric": "worker_idle_fraction",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0.28,
+        "priority": 3,
+        "description": "Excess idle time may be motion/search waste."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "increase",
+        "suggested_delta": 0.03,
+        "requires_confirmation": false,
+        "rationale": "Organised workstation reduces search and retrieval time, enabling pace increase."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "cycle_time_cw",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "worker_idle_fraction",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity"
+    ],
+    "references": [
+      "Hirano (1995)",
+      "Osada (1991)"
+    ]
+  },
+  {
+    "id": "a3_problem_solving",
+    "type": "lean_method",
+    "label": "A3 Problem Solving",
+    "aka": [
+      "A3 Report",
+      "A3 Thinking",
+      "Toyota A3 Process"
+    ],
+    "description": "A PDCA-based structured problem-solving approach condensed onto one A3-size sheet, comprising: background, current-state analysis, target state, root-cause analysis (gap analysis), countermeasures, implementation plan, and follow-up verification.",
+    "lean_category": "problem_solving",
+    "application_scope": [
+      "line_level",
+      "shift_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 3,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.3,
+        "priority": 4,
+        "description": "Structured problem-solving required when defects are persistently elevated."
+      },
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.88,
+        "priority": 4,
+        "description": "Throughput below 88% baseline requiring structured analysis."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [],
+    "references": [
+      "Shook (2008)",
+      "Liker (2004)"
+    ]
+  },
+  {
+    "id": "dmaic_cycle",
+    "type": "lean_method",
+    "label": "DMAIC Cycle",
+    "aka": [
+      "Define-Measure-Analyze-Improve-Control",
+      "Six Sigma DMAIC"
+    ],
+    "description": "The core improvement methodology of Six Sigma: five structured phases (Define, Measure, Analyze, Improve, Control) that reduce process variation to near-zero defect levels using statistical tools, measurement system analysis, and data-driven root cause investigation.",
+    "lean_category": "problem_solving",
+    "application_scope": [
+      "line_level",
+      "shift_level"
+    ],
+    "time_to_implement": "long",
+    "complexity": 5,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 2.0,
+        "priority": 5,
+        "description": "Defect rate doubled \u2014 statistical intervention required."
+      },
+      {
+        "metric": "cycle_time_cw",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.25,
+        "priority": 4,
+        "description": "Cycle time variance beyond normal range."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Statistical optimisation of pace to reduce cycle time variance."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "first_pass_yield",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "technology_synergy"
+    ],
+    "references": [
+      "Harry & Schroeder (2000)",
+      "Pyzdek & Keller (2014)"
+    ]
+  },
+  {
+    "id": "kanban",
+    "type": "lean_method",
+    "label": "Kanban",
+    "aka": [
+      "Visual Pull System",
+      "Kanban Cards",
+      "WIP Limiting",
+      "Pull Scheduling"
+    ],
+    "description": "A visual pull-based scheduling system using Kanban signals (cards, bins, digital triggers) to authorise production only when downstream demand exists, preventing overproduction and controlling work-in-progress inventory between the CW and MW stations.",
+    "lean_category": "flow_management",
+    "application_scope": [
+      "line_level",
+      "CW",
+      "MW"
+    ],
+    "time_to_implement": "short",
+    "complexity": 2,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "queue_length",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 3,
+        "priority": 4,
+        "description": "Buffer queue exceeds 3 products \u2014 push behaviour detected."
+      },
+      {
+        "metric": "lead_time",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.2,
+        "priority": 4,
+        "description": "Lead time 20% above baseline due to inventory accumulation."
+      },
+      {
+        "metric": "mw_utilization",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0.92,
+        "priority": 3,
+        "description": "MW near-saturation \u2014 CW feeding faster than MW can consume."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "buffer_capacity",
+        "direction": "decrease",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Constrain buffer to 1\u20133 units to enforce pull system."
+      },
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Match CW production rate to MW consumption rate."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "queue_length",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "lead_time",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jit",
+      "heijunka_pillar"
+    ],
+    "industry5_alignment": [
+      "resilience"
+    ],
+    "references": [
+      "Ohno (1988)",
+      "Anderson (2010)",
+      "Hopp & Spearman (2011)"
+    ]
+  },
+  {
+    "id": "poka_yoke",
+    "type": "lean_method",
+    "label": "Poka-Yoke / Cognitive Poka-Yoke",
+    "aka": [
+      "Mistake-Proofing",
+      "Error-Proofing",
+      "ZQC",
+      "Fool-Proofing"
+    ],
+    "description": "Physical or algorithmic mechanisms that prevent errors before they become defects. Classical Poka-Yoke uses contact sensors, jigs, and interlocks; Cognitive Poka-Yoke extends this with AI-assisted real-time detection that flags operator assembly errors before they propagate downstream.",
+    "lean_category": "error_proofing",
+    "application_scope": [
+      "CW",
+      "MW"
+    ],
+    "time_to_implement": "medium",
+    "complexity": 3,
+    "phase": "control",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.4,
+        "priority": 5,
+        "description": "Defect rate 40% above baseline \u2014 error-proofing required."
+      },
+      {
+        "metric": "first_pass_yield",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.92,
+        "priority": 5,
+        "description": "First pass yield below 92%."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 5,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "first_pass_yield",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "short",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "technology_synergy"
+    ],
+    "references": [
+      "Shingo (1986)",
+      "Hinckley (2001)"
+    ]
+  },
+  {
+    "id": "pdca_cycle",
+    "type": "lean_method",
+    "label": "PDCA Cycle",
+    "aka": [
+      "Plan-Do-Check-Act",
+      "Deming Cycle",
+      "Shewhart Cycle",
+      "PDSA"
+    ],
+    "description": "The foundational iterative improvement cycle \u2014 Plan (define objective and hypothesis), Do (implement at small scale), Check (measure results against plan), Act (standardise success or restart) \u2014 that underlies all structured Lean and quality improvement methodologies including Kaizen, A3, and DMAIC.",
+    "lean_category": "foundational",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level",
+      "shift_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 1,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.9,
+        "priority": 2,
+        "description": "Any significant deviation warrants a PDCA cycle."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": 0.03,
+        "requires_confirmation": false,
+        "rationale": "Adjust in small increments per PDCA cycle; verify KPI response before next step."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [],
+    "references": [
+      "Deming (1950)",
+      "Moen & Norman (2009)"
+    ]
+  },
+  {
+    "id": "kaikaku",
+    "type": "lean_method",
+    "label": "Kaikaku (Radical Improvement)",
+    "aka": [
+      "Breakthrough Kaizen",
+      "Radical Transformation",
+      "Flow Kaizen",
+      "System Kaizen"
+    ],
+    "description": "A fundamental redesign or radical step-change of a production system, process, or layout \u2014 as opposed to the incremental approach of Kaizen \u2014 triggered when the current system has hit a structural ceiling that incremental improvement cannot break through.",
+    "lean_category": "improvement",
+    "application_scope": [
+      "line_level",
+      "strategic"
+    ],
+    "time_to_implement": "long",
+    "complexity": 5,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.8,
+        "priority": 5,
+        "description": "Throughput below 80% despite repeated Kaizen attempts."
+      },
+      {
+        "metric": "oee",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.6,
+        "priority": 5,
+        "description": "OEE below 60% \u2014 systemic structural change needed."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "increase",
+        "suggested_delta": 0.2,
+        "requires_confirmation": true,
+        "rationale": "Structural redesign enables step-change capacity increase."
+      },
+      {
+        "parameter": "robot_speed_factor",
+        "direction": "increase",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Kaikaku may involve robot upgrade or process redesign."
+      },
+      {
+        "parameter": "worker_assignment",
+        "direction": "reassign",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Radical redesign reconfigures role allocation."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "lead_time",
+        "direction": "decrease",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "line_balance_ratio",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "jit"
+    ],
+    "industry5_alignment": [
+      "resilience",
+      "technology_synergy"
+    ],
+    "references": [
+      "Womack & Jones (1996)",
+      "Imai (1997)"
+    ]
+  },
+  {
+    "id": "jidoka",
+    "type": "lean_method",
+    "label": "Jidoka (Autonomation / Built-in Quality)",
+    "aka": [
+      "Autonomation",
+      "Intelligent Automation",
+      "Built-in Quality",
+      "Automation with Human Touch"
+    ],
+    "description": "The principle of designing machines and processes to autonomously detect abnormalities and stop immediately, separating human work from machine work and preventing defect propagation. Jidoka is the quality pillar of TPS and enables Andon-based escalation. In MAGI, the cognitive agent embodies a digital Jidoka through real-time DT monitoring.",
+    "lean_category": "error_proofing",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "medium",
+    "complexity": 4,
+    "phase": "control",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.3,
+        "priority": 5,
+        "description": "Defect elevation indicates undetected error source."
+      },
+      {
+        "metric": "robot_utilization",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.6,
+        "priority": 3,
+        "description": "Low robot utilisation may indicate unconfigured quality checks."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "robot_speed_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Enable robot quality checks; may slightly reduce cycle speed but prevents defects."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "first_pass_yield",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "medium",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar"
+    ],
+    "industry5_alignment": [
+      "technology_synergy",
+      "human_centricity"
+    ],
+    "references": [
+      "Ohno (1988)",
+      "Shingo (1989)",
+      "Liker (2004)"
+    ]
+  },
+  {
+    "id": "six_sigma",
+    "type": "lean_method",
+    "label": "Six Sigma",
+    "aka": [
+      "6\u03c3",
+      "Lean Six Sigma",
+      "LSS",
+      "Statistical Quality Management"
+    ],
+    "description": "A data-driven quality management framework targeting process variation reduction to within 6 standard deviations of the specification limit (3.4 DPMO), using statistical tools and the DMAIC methodology. When combined with Lean it becomes Lean Six Sigma \u2014 addressing both waste (Lean) and variation (Six Sigma).",
+    "lean_category": "problem_solving",
+    "application_scope": [
+      "line_level",
+      "shift_level"
+    ],
+    "time_to_implement": "long",
+    "complexity": 5,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.5,
+        "priority": 5,
+        "description": "50% defect rate elevation requires statistical process control."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Statistical optimisation of pace to minimise cycle time variance."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "first_pass_yield",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "technology_synergy"
+    ],
+    "references": [
+      "Harry & Schroeder (2000)",
+      "George (2002)"
+    ]
+  },
+  {
+    "id": "heijunka",
+    "type": "lean_method",
+    "label": "Heijunka (Production Levelling)",
+    "aka": [
+      "Production Levelling",
+      "Level Loading",
+      "Volume Smoothing",
+      "Heijunka Box"
+    ],
+    "description": "A production scheduling technique that levels both volume and product mix over time to eliminate Mura (unevenness) and reduce Muri (overburden). In the Silverline context, Heijunka is the primary tool for balancing CW and MW workloads, reducing queue build-up, and lowering Physiological Load Index by smoothing peak demand periods.",
+    "lean_category": "flow_management",
+    "application_scope": [
+      "line_level",
+      "CW",
+      "MW"
+    ],
+    "time_to_implement": "short",
+    "complexity": 3,
+    "phase": "improve",
+    "trigger_conditions": [
+      {
+        "metric": "line_balance_ratio",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.75,
+        "priority": 5,
+        "description": "Line balance below 75% \u2014 Heijunka required."
+      },
+      {
+        "metric": "queue_length",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 3,
+        "priority": 4,
+        "description": "Buffer queue > 3 units indicates CW\u2013MW imbalance."
+      },
+      {
+        "metric": "mw_utilization",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 0.9,
+        "priority": 5,
+        "description": "MW near saturation \u2014 bottleneck detected at MW."
+      },
+      {
+        "metric": "cw_utilization",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.65,
+        "priority": 4,
+        "description": "CW under-utilised while MW is saturated."
+      },
+      {
+        "metric": "pli",
+        "operator": ">",
+        "threshold_type": "absolute",
+        "threshold": 150,
+        "priority": 4,
+        "description": "Elevated PLI at MW due to uneven workload distribution."
+      },
+      {
+        "metric": "fatigue_classification",
+        "operator": "==",
+        "threshold_type": "categorical",
+        "threshold": "Elevated Load",
+        "priority": 4,
+        "description": "Elevated fatigue state at MW operator."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Level CW output rate to match MW processing capacity."
+      },
+      {
+        "parameter": "takt_time_param",
+        "direction": "recalibrate",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Set unified takt time to smooth both stations."
+      },
+      {
+        "parameter": "worker_assignment",
+        "direction": "reassign",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Assign worker with lower MW PLI profile to the bottleneck station."
+      },
+      {
+        "parameter": "buffer_capacity",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Set buffer capacity to allow Heijunka pacing without starving MW."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "line_balance_ratio",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "queue_length",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "takt_time_adherence",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "pli",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "mean_hr",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "worker_idle_fraction",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jit",
+      "heijunka_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "sustainability"
+    ],
+    "references": [
+      "Ohno (1988)",
+      "Harris & Harris (2004)",
+      "Liker (2004)"
+    ]
+  },
+  {
+    "id": "value_stream_mapping",
+    "type": "lean_method",
+    "label": "Value Stream Mapping (VSM)",
+    "aka": [
+      "VSM",
+      "Material & Information Flow Mapping",
+      "Value Stream Analysis"
+    ],
+    "description": "An end-to-end visual mapping technique that captures all material and information flows for a product family, distinguishing value-adding from non-value-adding steps, and producing a future-state map that becomes the blueprint for targeted improvement actions.",
+    "lean_category": "analysis",
+    "application_scope": [
+      "line_level",
+      "strategic"
+    ],
+    "time_to_implement": "short",
+    "complexity": 3,
+    "phase": "analyze",
+    "trigger_conditions": [
+      {
+        "metric": "lead_time",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.25,
+        "priority": 4,
+        "description": "Lead time 25% above baseline \u2014 flow analysis required."
+      },
+      {
+        "metric": "throughput",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.85,
+        "priority": 4,
+        "description": "Significant throughput loss \u2014 map system to identify constraint."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "lead_time",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high",
+        "note": "Direct impact realised through VSM-guided improvement actions."
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "medium",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jit",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "technology_synergy"
+    ],
+    "references": [
+      "Rother & Shook (1998)",
+      "Womack & Jones (2003)"
+    ]
+  },
+  {
+    "id": "tpm",
+    "type": "lean_method",
+    "label": "Total Productive Maintenance (TPM)",
+    "aka": [
+      "TPM",
+      "Total Preventive Maintenance",
+      "8 Pillars TPM"
+    ],
+    "description": "A comprehensive maintenance strategy that targets zero unplanned downtime through autonomous maintenance, planned maintenance, and early equipment management. Directly improves OEE by addressing its Availability component, and eliminates losses from breakdowns, setup, and speed reduction.",
+    "lean_category": "maintenance",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "long",
+    "complexity": 4,
+    "phase": "control",
+    "trigger_conditions": [
+      {
+        "metric": "robot_utilization",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.8,
+        "priority": 4,
+        "description": "Robot utilisation below 80% \u2014 equipment effectiveness issue."
+      },
+      {
+        "metric": "mtbf",
+        "operator": "<",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 0.75,
+        "priority": 5,
+        "description": "MTBF degraded to 75% of baseline \u2014 proactive maintenance needed."
+      },
+      {
+        "metric": "oee",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.7,
+        "priority": 5,
+        "description": "OEE below 70% \u2014 equipment-related losses dominant."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "maintenance_interval_products",
+        "direction": "decrease",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Increase maintenance frequency to restore MTBF."
+      },
+      {
+        "parameter": "robot_speed_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Post-maintenance: recalibrate robot to optimal speed."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "mtbf",
+        "direction": "increase",
+        "magnitude": 5,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "mttr",
+        "direction": "decrease",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "high"
+      },
+      {
+        "kpi": "robot_utilization",
+        "direction": "increase",
+        "magnitude": 4,
+        "timeframe": "long",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar",
+      "kaizen_pillar"
+    ],
+    "industry5_alignment": [
+      "resilience",
+      "sustainability"
+    ],
+    "references": [
+      "Nakajima (1988)",
+      "Suzuki (1994)"
+    ]
+  },
+  {
+    "id": "hoshin_kanri",
+    "type": "lean_method",
+    "label": "Hoshin Kanri / Catchball Process",
+    "aka": [
+      "Policy Deployment",
+      "Hoshin Planning",
+      "MBO Lean",
+      "X-Matrix",
+      "Catchball"
+    ],
+    "description": "A strategic management methodology that aligns organisational goals with operational improvement activities through the Catchball process \u2014 a two-way dialogue between management and frontline teams that translates annual breakthrough objectives into daily improvement priorities.",
+    "lean_category": "strategic",
+    "application_scope": [
+      "strategic",
+      "shift_level"
+    ],
+    "time_to_implement": "long",
+    "complexity": 4,
+    "phase": "strategic",
+    "trigger_conditions": [
+      {
+        "metric": "oee",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.6,
+        "priority": 4,
+        "description": "Strategic performance gap requiring policy-level alignment."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "takt_time_param",
+        "direction": "recalibrate",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Strategic takt time aligned to breakthrough objective targets."
+      },
+      {
+        "parameter": "shift_duration_hours",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": true,
+        "rationale": "Shift structure aligned to strategic delivery targets."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "throughput",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "medium"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "long",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "resilience"
+    ],
+    "references": [
+      "Akao (1991)",
+      "Hutchins (2008)"
+    ]
+  },
+  {
+    "id": "andon",
+    "type": "lean_method",
+    "label": "Andon",
+    "aka": [
+      "Andon System",
+      "Visual Alert System",
+      "Production Alert Board",
+      "Andon Cord"
+    ],
+    "description": "A visual and audible signalling system that enables operators to immediately escalate detected problems \u2014 quality defects, equipment anomalies, line imbalance, or safety concerns \u2014 to supervisors and support functions in real time. In the MAGI framework, the Edge Layer fatigue alert is a digital Andon signal routed to the Cognitive Layer.",
+    "lean_category": "monitoring",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 1,
+    "phase": "detect",
+    "trigger_conditions": [
+      {
+        "metric": "defect_rate",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.2,
+        "priority": 5,
+        "description": "Quality anomaly detected."
+      },
+      {
+        "metric": "fatigue_classification",
+        "operator": "==",
+        "threshold_type": "categorical",
+        "threshold": "Fatigue Warning",
+        "priority": 5,
+        "description": "Fatigue alert \u2014 MAGI digital Andon trigger."
+      },
+      {
+        "metric": "robot_utilization",
+        "operator": "<",
+        "threshold_type": "absolute",
+        "threshold": 0.5,
+        "priority": 4,
+        "description": "Robot utilisation critically low \u2014 possible breakdown."
+      }
+    ],
+    "simulation_adjustments": [],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "mttr",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "immediate",
+        "confidence": "high"
+      },
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 2,
+        "timeframe": "short",
+        "confidence": "medium"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "jidoka_pillar",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity",
+      "technology_synergy"
+    ],
+    "references": [
+      "Liker (2004)",
+      "Shingo (1989)"
+    ]
+  },
+  {
+    "id": "standard_work",
+    "type": "lean_method",
+    "label": "Standard Work (Standardized Work)",
+    "aka": [
+      "Standardized Work",
+      "Standard Operations",
+      "Hyojunka",
+      "SOPs"
+    ],
+    "description": "The precise, documented description of the safest, highest-quality, most efficient way to perform each task \u2014 defining takt time, work sequence, and standard in-process inventory. Standard Work is the baseline against which all Kaizen improvement is measured; without it there can be no sustained improvement.",
+    "lean_category": "foundational",
+    "application_scope": [
+      "CW",
+      "MW",
+      "line_level"
+    ],
+    "time_to_implement": "short",
+    "complexity": 2,
+    "phase": "control",
+    "trigger_conditions": [
+      {
+        "metric": "cycle_time_cw",
+        "operator": ">",
+        "threshold_type": "pct_of_baseline",
+        "threshold": 1.12,
+        "priority": 3,
+        "description": "Cycle time deviation suggests non-standard operation."
+      }
+    ],
+    "simulation_adjustments": [
+      {
+        "parameter": "takt_time_param",
+        "direction": "recalibrate",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Standard work defines the authoritative takt time."
+      },
+      {
+        "parameter": "production_pace_factor",
+        "direction": "optimize",
+        "suggested_delta": null,
+        "requires_confirmation": false,
+        "rationale": "Pace aligned to standard work sequence."
+      }
+    ],
+    "expected_kpi_impacts": [
+      {
+        "kpi": "cycle_time_cw",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "defect_rate",
+        "direction": "decrease",
+        "magnitude": 3,
+        "timeframe": "short",
+        "confidence": "high"
+      },
+      {
+        "kpi": "oee",
+        "direction": "increase",
+        "magnitude": 3,
+        "timeframe": "short",
+        "confidence": "high"
+      }
+    ],
+    "lean_pillar_alignment": [
+      "kaizen_pillar",
+      "jit",
+      "respect_for_people"
+    ],
+    "industry5_alignment": [
+      "human_centricity"
+    ],
+    "references": [
+      "Liker (2004)",
+      "Rother (2010)"
+    ]
+  },
+  {
+    "id": "bottleneck",
+    "type": "problem_type",
+    "label": "Production Bottleneck",
+    "dimension": "delivery",
+    "description": "One station limits system throughput; MW utilisation > 90%."
+  },
+  {
+    "id": "operator_fatigue",
+    "type": "problem_type",
+    "label": "Operator Fatigue",
+    "dimension": "safety",
+    "description": "Physiological overload causing risk to worker wellbeing and safety."
+  },
+  {
+    "id": "high_cycle_time",
+    "type": "problem_type",
+    "label": "Excessive Cycle Time",
+    "dimension": "delivery",
+    "description": "Task duration exceeds standard time by > 10%."
+  },
+  {
+    "id": "low_throughput",
+    "type": "problem_type",
+    "label": "Low Throughput",
+    "dimension": "delivery",
+    "description": "Units produced per hour below target by > 10%."
+  },
+  {
+    "id": "quality_defect",
+    "type": "problem_type",
+    "label": "Quality Defect",
+    "dimension": "quality",
+    "description": "Product fails in-process or end-of-line quality check."
+  },
+  {
+    "id": "unplanned_downtime",
+    "type": "problem_type",
+    "label": "Unplanned Downtime",
+    "dimension": "delivery",
+    "description": "Unexpected equipment or robot stop during production."
+  },
+  {
+    "id": "line_imbalance",
+    "type": "problem_type",
+    "label": "Line Imbalance",
+    "dimension": "delivery",
+    "description": "Significant mismatch in workload between CW and MW."
+  },
+  {
+    "id": "excessive_waiting",
+    "type": "problem_type",
+    "label": "Excessive Waiting Waste",
+    "dimension": "cost",
+    "description": "Queue length > 3 units; products waiting for MW."
+  },
+  {
+    "id": "overproduction",
+    "type": "problem_type",
+    "label": "Overproduction Waste",
+    "dimension": "cost",
+    "description": "CW producing ahead of MW consumption rate (push behaviour)."
+  },
+  {
+    "id": "excess_inventory",
+    "type": "problem_type",
+    "label": "Excess Inventory",
+    "dimension": "cost",
+    "description": "Buffer exceeds optimal capacity; WIP accumulation."
+  },
+  {
+    "id": "unnecessary_motion",
+    "type": "problem_type",
+    "label": "Unnecessary Motion Waste",
+    "dimension": "cost",
+    "description": "Non-value-adding operator movements (search, reach, reposition)."
+  },
+  {
+    "id": "high_pli",
+    "type": "problem_type",
+    "label": "High Physiological Load",
+    "dimension": "safety",
+    "description": "PLI > 150; sustained cardiovascular and cognitive overload."
+  },
+  {
+    "id": "learning_inefficiency",
+    "type": "problem_type",
+    "label": "Learning Inefficiency",
+    "dimension": "cost",
+    "description": "Performance below steady-state learning curve expectation."
+  },
+  {
+    "id": "process_variability",
+    "type": "problem_type",
+    "label": "High Process Variability",
+    "dimension": "quality",
+    "description": "Coefficient of variation of cycle time exceeds 25%."
+  },
+  {
+    "id": "resource_underutilization",
+    "type": "problem_type",
+    "label": "Resource Underutilisation",
+    "dimension": "cost",
+    "description": "Station utilisation below 60%; wasted capacity."
+  },
+  {
+    "id": "safety_risk",
+    "type": "problem_type",
+    "label": "Safety Risk",
+    "dimension": "safety",
+    "description": "Near-miss, ergonomic overload, or safety threshold breach."
+  },
+  {
+    "id": "knowledge_loss",
+    "type": "problem_type",
+    "label": "Knowledge Loss / Skill Gap",
+    "dimension": "morale",
+    "description": "Worker turnover or training gap causing performance degradation."
+  },
+  {
+    "id": "throughput",
+    "type": "kpi",
+    "label": "Throughput",
+    "unit": "units/hour",
+    "better_direction": "increase",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "cycle_time_cw",
+    "type": "kpi",
+    "label": "CW Cycle Time",
+    "unit": "seconds",
+    "better_direction": "decrease",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "cycle_time_mw",
+    "type": "kpi",
+    "label": "MW Cycle Time",
+    "unit": "seconds",
+    "better_direction": "decrease",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "oee",
+    "type": "kpi",
+    "label": "OEE",
+    "unit": "ratio 0\u20131",
+    "better_direction": "increase",
+    "sqdcm_dim": "quality"
+  },
+  {
+    "id": "pli",
+    "type": "kpi",
+    "label": "Physiological Load Index",
+    "unit": "BPM\u00b7min",
+    "better_direction": "decrease",
+    "sqdcm_dim": "safety"
+  },
+  {
+    "id": "mean_hr",
+    "type": "kpi",
+    "label": "Mean Heart Rate",
+    "unit": "BPM",
+    "better_direction": "decrease",
+    "sqdcm_dim": "safety"
+  },
+  {
+    "id": "cw_utilization",
+    "type": "kpi",
+    "label": "CW Station Utilisation",
+    "unit": "ratio 0\u20131",
+    "better_direction": "optimize",
+    "target_range": [
+      0.75,
+      0.88
+    ],
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "mw_utilization",
+    "type": "kpi",
+    "label": "MW Station Utilisation",
+    "unit": "ratio 0\u20131",
+    "better_direction": "optimize",
+    "target_range": [
+      0.75,
+      0.88
+    ],
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "robot_utilization",
+    "type": "kpi",
+    "label": "Robot Utilisation",
+    "unit": "ratio 0\u20131",
+    "better_direction": "increase",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "queue_length",
+    "type": "kpi",
+    "label": "CW\u2192MW Queue Length",
+    "unit": "products",
+    "better_direction": "decrease",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "line_balance_ratio",
+    "type": "kpi",
+    "label": "Line Balance Ratio",
+    "unit": "ratio 0\u20131",
+    "better_direction": "increase",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "takt_time_adherence",
+    "type": "kpi",
+    "label": "Takt Time Adherence",
+    "unit": "ratio 0\u2013\u221e",
+    "better_direction": "target_1",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "worker_idle_fraction",
+    "type": "kpi",
+    "label": "Worker Idle Fraction",
+    "unit": "ratio 0\u20131",
+    "better_direction": "decrease",
+    "sqdcm_dim": "cost"
+  },
+  {
+    "id": "lead_time",
+    "type": "kpi",
+    "label": "Total Lead Time",
+    "unit": "seconds",
+    "better_direction": "decrease",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "defect_rate",
+    "type": "kpi",
+    "label": "Defect Rate",
+    "unit": "defects/unit",
+    "better_direction": "decrease",
+    "sqdcm_dim": "quality"
+  },
+  {
+    "id": "mtbf",
+    "type": "kpi",
+    "label": "Mean Time Between Failures",
+    "unit": "minutes",
+    "better_direction": "increase",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "mttr",
+    "type": "kpi",
+    "label": "Mean Time to Repair",
+    "unit": "minutes",
+    "better_direction": "decrease",
+    "sqdcm_dim": "delivery"
+  },
+  {
+    "id": "first_pass_yield",
+    "type": "kpi",
+    "label": "First Pass Yield",
+    "unit": "ratio 0\u20131",
+    "better_direction": "increase",
+    "sqdcm_dim": "quality"
+  },
+  {
+    "id": "fatigue_score",
+    "type": "kpi",
+    "label": "Cumulative Fatigue Score",
+    "unit": "index 0\u2013100",
+    "better_direction": "decrease",
+    "sqdcm_dim": "safety"
+  },
+  {
+    "id": "transportation_waste",
+    "type": "waste_type",
+    "label": "Transportation",
+    "category": "muda",
+    "description": "Unnecessary movement of parts, products, or materials."
+  },
+  {
+    "id": "inventory_waste",
+    "type": "waste_type",
+    "label": "Inventory",
+    "category": "muda",
+    "description": "Excess raw material, WIP, or finished goods beyond immediate need."
+  },
+  {
+    "id": "motion_waste",
+    "type": "waste_type",
+    "label": "Motion",
+    "category": "muda",
+    "description": "Unnecessary operator movements not contributing to product value."
+  },
+  {
+    "id": "waiting_waste",
+    "type": "waste_type",
+    "label": "Waiting",
+    "category": "muda",
+    "description": "Idle time due to imbalance, machine stops, or material shortages."
+  },
+  {
+    "id": "overproduction_waste",
+    "type": "waste_type",
+    "label": "Overproduction",
+    "category": "muda",
+    "description": "Producing more, sooner, or faster than downstream demand."
+  },
+  {
+    "id": "overprocessing_waste",
+    "type": "waste_type",
+    "label": "Overprocessing",
+    "category": "muda",
+    "description": "Adding more value to a product than the customer requires."
+  },
+  {
+    "id": "defects_waste",
+    "type": "waste_type",
+    "label": "Defects",
+    "category": "muda",
+    "description": "Inspection, rework, and scrap from non-conforming products."
+  },
+  {
+    "id": "underutilized_skills_waste",
+    "type": "waste_type",
+    "label": "Underutilised Skills",
+    "category": "muda",
+    "description": "Failing to use operator knowledge, skills, and creativity (8th waste)."
+  },
+  {
+    "id": "mura_unevenness",
+    "type": "waste_type",
+    "label": "Mura (Unevenness)",
+    "category": "mura",
+    "description": "Irregular, uneven flow \u2014 peaks and valleys in demand or production."
+  },
+  {
+    "id": "muri_overburden",
+    "type": "waste_type",
+    "label": "Muri (Overburden)",
+    "category": "muri",
+    "description": "Physical or cognitive overload placed on operators or equipment."
+  },
+  {
+    "id": "non_value_add_processing",
+    "type": "waste_type",
+    "label": "Non-Value-Add Processing",
+    "category": "muda",
+    "description": "Processing steps that consume resources but add no customer value."
+  },
+  {
+    "id": "takt_time_concept",
+    "type": "production_concept",
+    "label": "Takt Time",
+    "description": "Available production time divided by customer demand rate."
+  },
+  {
+    "id": "one_piece_flow",
+    "type": "production_concept",
+    "label": "One-Piece Flow",
+    "description": "Processing one unit at a time through each operation without batching."
+  },
+  {
+    "id": "pull_system",
+    "type": "production_concept",
+    "label": "Pull System",
+    "description": "Downstream demand triggers upstream production; prevents overproduction."
+  },
+  {
+    "id": "standard_work_concept",
+    "type": "production_concept",
+    "label": "Standard Work",
+    "description": "Defined sequence, timing, and inventory for each operation."
+  },
+  {
+    "id": "visual_management",
+    "type": "production_concept",
+    "label": "Visual Management",
+    "description": "Making the state of processes immediately visible without verbal communication."
+  },
+  {
+    "id": "just_in_time",
+    "type": "production_concept",
+    "label": "Just-in-Time (JIT)",
+    "description": "Right part, right quantity, right time \u2014 no more, no less."
+  },
+  {
+    "id": "autonomation_concept",
+    "type": "production_concept",
+    "label": "Autonomation",
+    "description": "Machines that detect abnormalities and stop automatically."
+  },
+  {
+    "id": "level_loading",
+    "type": "production_concept",
+    "label": "Level Loading",
+    "description": "Distributing work evenly across time and resources."
+  },
+  {
+    "id": "cross_training",
+    "type": "production_concept",
+    "label": "Cross-Training",
+    "description": "Operators trained on multiple stations for flexible deployment."
+  },
+  {
+    "id": "pacemaker_concept",
+    "type": "production_concept",
+    "label": "Pacemaker Process",
+    "description": "The single point in the value stream that sets the production rhythm."
+  },
+  {
+    "id": "supermarket_system",
+    "type": "production_concept",
+    "label": "Supermarket System",
+    "description": "Controlled buffer between processes to enable pull-based replenishment."
+  },
+  {
+    "id": "error_proofing_concept",
+    "type": "production_concept",
+    "label": "Error-Proofing",
+    "description": "Design mechanisms to prevent errors from becoming defects."
+  },
+  {
+    "id": "robot_speed_factor",
+    "type": "simulation_parameter",
+    "label": "Robot Speed Factor",
+    "description": "Float multiplier on robot action durations (1.0 = baseline; 1.2 = 20% faster).",
+    "default": 1.0,
+    "range": [
+      0.5,
+      2.0
+    ],
+    "unit": "multiplier",
+    "influences_kpis": [
+      "cycle_time_cw",
+      "robot_utilization",
+      "cw_utilization"
+    ]
+  },
+  {
+    "id": "worker_assignment",
+    "type": "simulation_parameter",
+    "label": "Worker Assignment",
+    "description": "Dict mapping worker IDs to stations: {cw_worker: '001', mw_worker: '002'}.",
+    "default": {
+      "cw_worker": "001",
+      "mw_worker": "002"
+    },
+    "influences_kpis": [
+      "cycle_time_cw",
+      "cycle_time_mw",
+      "pli",
+      "mean_hr",
+      "fatigue_score"
+    ]
+  },
+  {
+    "id": "production_pace_factor",
+    "type": "simulation_parameter",
+    "label": "Production Pace Factor",
+    "description": "Float multiplier on production rate (1.0 = baseline; 1.1 = 10% faster).",
+    "default": 1.0,
+    "range": [
+      0.5,
+      1.5
+    ],
+    "unit": "multiplier",
+    "influences_kpis": [
+      "throughput",
+      "cycle_time_cw",
+      "queue_length",
+      "pli",
+      "mean_hr"
+    ]
+  },
+  {
+    "id": "takt_time_param",
+    "type": "simulation_parameter",
+    "label": "Takt Time",
+    "description": "Target seconds per product unit (available time / demand rate).",
+    "default": 180.0,
+    "range": [
+      60.0,
+      600.0
+    ],
+    "unit": "seconds",
+    "influences_kpis": [
+      "takt_time_adherence",
+      "throughput",
+      "cycle_time_cw",
+      "cycle_time_mw"
+    ]
+  },
+  {
+    "id": "buffer_capacity",
+    "type": "simulation_parameter",
+    "label": "CW\u2192MW Buffer Capacity",
+    "description": "Maximum products in the inter-station queue before CW must pause.",
+    "default": 5,
+    "range": [
+      1,
+      20
+    ],
+    "unit": "products",
+    "influences_kpis": [
+      "queue_length",
+      "cw_utilization",
+      "lead_time"
+    ]
+  },
+  {
+    "id": "shift_duration_hours",
+    "type": "simulation_parameter",
+    "label": "Shift Duration",
+    "description": "Simulated shift length in hours.",
+    "default": 8.0,
+    "range": [
+      1.0,
+      12.0
+    ],
+    "unit": "hours",
+    "influences_kpis": [
+      "throughput",
+      "fatigue_score",
+      "pli"
+    ]
+  },
+  {
+    "id": "maintenance_interval_products",
+    "type": "simulation_parameter",
+    "label": "Maintenance Interval",
+    "description": "Number of products processed before preventive maintenance is triggered.",
+    "default": 100,
+    "range": [
+      10,
+      500
+    ],
+    "unit": "products",
+    "influences_kpis": [
+      "mtbf",
+      "robot_utilization",
+      "oee"
+    ]
+  },
+  {
+    "id": "heart_rate_bpm",
+    "type": "physio_signal",
+    "label": "Heart Rate",
+    "unit": "BPM",
+    "sensor": "ECG chest band",
+    "normal_range": [
+      55,
+      95
+    ]
+  },
+  {
+    "id": "rr_interval_ms",
+    "type": "physio_signal",
+    "label": "R-R Interval",
+    "unit": "ms",
+    "sensor": "ECG chest band",
+    "normal_range": [
+      300,
+      2000
+    ]
+  },
+  {
+    "id": "blink_duration_ms",
+    "type": "physio_signal",
+    "label": "Blink Duration",
+    "unit": "ms",
+    "sensor": "Eye tracker",
+    "normal_range": [
+      50,
+      500
+    ]
+  },
+  {
+    "id": "interblink_interval_ms",
+    "type": "physio_signal",
+    "label": "Interblink Interval",
+    "unit": "ms",
+    "sensor": "Eye tracker",
+    "normal_range": [
+      300,
+      8000
+    ]
+  },
+  {
+    "id": "fixation_duration_ms",
+    "type": "physio_signal",
+    "label": "Fixation Duration",
+    "unit": "ms",
+    "sensor": "Eye tracker",
+    "normal_range": [
+      10,
+      1500
+    ]
+  },
+  {
+    "id": "saccade_amplitude_deg",
+    "type": "physio_signal",
+    "label": "Saccade Amplitude",
+    "unit": "degrees",
+    "sensor": "Eye tracker",
+    "normal_range": [
+      0.1,
+      55
+    ]
+  },
+  {
+    "id": "fatigue_classification",
+    "type": "physio_signal",
+    "label": "Fatigue Classification",
+    "unit": "category",
+    "sensor": "Edge ML model",
+    "categories": [
+      "Normal",
+      "Elevated Load",
+      "Fatigue Warning"
+    ]
+  },
+  {
+    "id": "jit",
+    "type": "lean_pillar",
+    "label": "Just-in-Time",
+    "description": "Right part, right amount, right time \u2014 the flow pillar of TPS."
+  },
+  {
+    "id": "jidoka_pillar",
+    "type": "lean_pillar",
+    "label": "Jidoka (Built-in Quality)",
+    "description": "Stop on defect, separate human work from machine work."
+  },
+  {
+    "id": "kaizen_pillar",
+    "type": "lean_pillar",
+    "label": "Kaizen (Continuous Improvement)",
+    "description": "Never-ending incremental improvement at every level."
+  },
+  {
+    "id": "respect_for_people",
+    "type": "lean_pillar",
+    "label": "Respect for People",
+    "description": "Develop, engage, and respect employees and partners."
+  },
+  {
+    "id": "heijunka_pillar",
+    "type": "lean_pillar",
+    "label": "Heijunka (Level Production)",
+    "description": "Smooth, predictable production rhythm eliminating Mura."
+  },
+  {
+    "id": "human_centricity",
+    "type": "industry5_principle",
+    "label": "Human Centricity",
+    "description": "Worker wellbeing, ergonomics, and human\u2013robot collaboration."
+  },
+  {
+    "id": "sustainability",
+    "type": "industry5_principle",
+    "label": "Sustainability",
+    "description": "Environmental responsibility, circular economy, energy efficiency."
+  },
+  {
+    "id": "resilience",
+    "type": "industry5_principle",
+    "label": "Resilience",
+    "description": "Adaptability, self-healing, and robustness to disruptions."
+  },
+  {
+    "id": "technology_synergy",
+    "type": "industry5_principle",
+    "label": "Technology Synergy",
+    "description": "AI + human collaboration and cognitive augmentation."
+  },
+  {
+    "id": "dmaic_define",
+    "type": "method_phase",
+    "label": "Define",
+    "parent_method": "dmaic_cycle",
+    "sequence": 1,
+    "description": "Define problem scope, project charter, SIPOC, and VOC."
+  },
+  {
+    "id": "dmaic_measure",
+    "type": "method_phase",
+    "label": "Measure",
+    "parent_method": "dmaic_cycle",
+    "sequence": 2,
+    "description": "Measure baseline performance; conduct MSA; establish capability."
+  },
+  {
+    "id": "dmaic_analyze",
+    "type": "method_phase",
+    "label": "Analyze",
+    "parent_method": "dmaic_cycle",
+    "sequence": 3,
+    "description": "Analyze data to identify root causes; use 5 Whys, DOE, regression."
+  },
+  {
+    "id": "dmaic_improve",
+    "type": "method_phase",
+    "label": "Improve",
+    "parent_method": "dmaic_cycle",
+    "sequence": 4,
+    "description": "Generate and implement optimised solution; pilot and validate."
+  },
+  {
+    "id": "dmaic_control",
+    "type": "method_phase",
+    "label": "Control",
+    "parent_method": "dmaic_cycle",
+    "sequence": 5,
+    "description": "Control plan, SPC charts, handover to process owner."
+  },
+  {
+    "id": "pdca_plan",
+    "type": "method_phase",
+    "label": "Plan",
+    "parent_method": "pdca_cycle",
+    "sequence": 1,
+    "description": "Define objective, hypothesis, and improvement approach."
+  },
+  {
+    "id": "pdca_do",
+    "type": "method_phase",
+    "label": "Do",
+    "parent_method": "pdca_cycle",
+    "sequence": 2,
+    "description": "Implement at small scale under controlled conditions."
+  },
+  {
+    "id": "pdca_check",
+    "type": "method_phase",
+    "label": "Check",
+    "parent_method": "pdca_cycle",
+    "sequence": 3,
+    "description": "Measure results against the planned objective."
+  },
+  {
+    "id": "pdca_act",
+    "type": "method_phase",
+    "label": "Act",
+    "parent_method": "pdca_cycle",
+    "sequence": 4,
+    "description": "Standardise success or revise hypothesis and restart cycle."
+  },
+  {
+    "id": "a3_background",
+    "type": "method_phase",
+    "label": "Background",
+    "parent_method": "a3_problem_solving",
+    "sequence": 1,
+    "description": "Context, urgency, and business reason for the problem."
+  },
+  {
+    "id": "a3_current_state",
+    "type": "method_phase",
+    "label": "Current State",
+    "parent_method": "a3_problem_solving",
+    "sequence": 2,
+    "description": "Factual description of the current situation with data."
+  },
+  {
+    "id": "a3_target_state",
+    "type": "method_phase",
+    "label": "Target State",
+    "parent_method": "a3_problem_solving",
+    "sequence": 3,
+    "description": "Desired future state and measurable targets."
+  },
+  {
+    "id": "a3_gap_analysis",
+    "type": "method_phase",
+    "label": "Gap Analysis",
+    "parent_method": "a3_problem_solving",
+    "sequence": 4,
+    "description": "Root-cause analysis of gap between current and target state."
+  },
+  {
+    "id": "a3_countermeasures",
+    "type": "method_phase",
+    "label": "Countermeasures",
+    "parent_method": "a3_problem_solving",
+    "sequence": 5,
+    "description": "Proposed actions linked directly to root causes."
+  },
+  {
+    "id": "a3_implementation",
+    "type": "method_phase",
+    "label": "Implementation",
+    "parent_method": "a3_problem_solving",
+    "sequence": 6,
+    "description": "Action plan with owner, timing, and resources."
+  },
+  {
+    "id": "a3_follow_up",
+    "type": "method_phase",
+    "label": "Follow-Up",
+    "parent_method": "a3_problem_solving",
+    "sequence": 7,
+    "description": "Verification of results and lessons learned."
+  },
+  {
+    "id": "vsm_current_state",
+    "type": "method_phase",
+    "label": "Current State Map",
+    "parent_method": "value_stream_mapping",
+    "sequence": 1,
+    "description": "Map actual material and information flows today."
+  },
+  {
+    "id": "vsm_future_state",
+    "type": "method_phase",
+    "label": "Future State Map",
+    "parent_method": "value_stream_mapping",
+    "sequence": 2,
+    "description": "Design ideal lean flow with wastes eliminated."
+  },
+  {
+    "id": "vsm_gap_analysis",
+    "type": "method_phase",
+    "label": "VSM Gap Analysis",
+    "parent_method": "value_stream_mapping",
+    "sequence": 3,
+    "description": "Identify kaizen bursts \u2014 improvement priorities."
+  },
+  {
+    "id": "vsm_impl_plan",
+    "type": "method_phase",
+    "label": "Implementation Plan",
+    "parent_method": "value_stream_mapping",
+    "sequence": 4,
+    "description": "Phased action plan to move from current to future state."
+  }
+]

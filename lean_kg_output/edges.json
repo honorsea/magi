@@ -1,0 +1,3662 @@
+[
+  {
+    "source": "time_motion_study",
+    "target": "high_cycle_time",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "line_imbalance",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "line_imbalance",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "unnecessary_motion",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "time_motion_study",
+    "target": "learning_inefficiency",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "learning_inefficiency",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "time_motion_study",
+    "target": "resource_underutilization",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "cycle_time_cw",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "cycle_time_cw",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "cycle_time_mw",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "cycle_time_mw",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "line_balance_ratio",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "time_motion_study",
+    "target": "worker_idle_fraction",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "worker_idle_fraction",
+    "relation": "MONITORS",
+    "weight": 4
+  },
+  {
+    "source": "time_motion_study",
+    "target": "heijunka",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "Time study data is input for Heijunka scheduling."
+  },
+  {
+    "source": "time_motion_study",
+    "target": "standard_work",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "Measured times form the standard work definition."
+  },
+  {
+    "source": "time_motion_study",
+    "target": "kanban",
+    "relation": "PRECEDES",
+    "weight": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "time_motion_study",
+    "target": "takt_time_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "time_motion_study",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 3
+  },
+  {
+    "source": "time_motion_study",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 3
+  },
+  {
+    "source": "lean_production",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "overproduction",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "high_pli",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "lean_production",
+    "target": "knowledge_loss",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "lean_production",
+    "target": "mura_unevenness",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "muri_overburden",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "lean_production",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "lead_time",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "lean_production",
+    "target": "pli",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "lean_production",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "just_in_time",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "pull_system",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "takt_time_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "one_piece_flow",
+    "relation": "USES",
+    "weight": 4
+  },
+  {
+    "source": "lean_production",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "heijunka_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "sustainability",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "lean_production",
+    "target": "resilience",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "lean_production",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "kaizen",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "kaizen",
+    "target": "high_cycle_time",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "kaizen",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "kaizen",
+    "target": "unnecessary_motion",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "kaizen",
+    "target": "non_value_add_processing",
+    "relation": "ELIMINATES",
+    "weight": 3
+  },
+  {
+    "source": "kaizen",
+    "target": "cycle_time_cw",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "kaizen",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 2
+  },
+  {
+    "source": "kaizen",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "kaizen",
+    "target": "pdca_cycle",
+    "relation": "REQUIRES",
+    "weight": 5,
+    "description": "Kaizen requires the PDCA structure to avoid unsustained changes."
+  },
+  {
+    "source": "kaizen",
+    "target": "standard_work",
+    "relation": "COMPLEMENTS",
+    "weight": 5,
+    "description": "Kaizen improves; Standard Work sustains the improvement."
+  },
+  {
+    "source": "kaizen",
+    "target": "kaikaku",
+    "relation": "ESCALATES_TO",
+    "weight": 5,
+    "description": "When incremental Kaizen cannot break through a structural barrier, escalate to Kaikaku."
+  },
+  {
+    "source": "kaizen",
+    "target": "a3_problem_solving",
+    "relation": "ESCALATES_TO",
+    "weight": 3,
+    "description": "Complex multi-root problems exceed Kaizen scope \u2014 use A3."
+  },
+  {
+    "source": "kaizen",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 3
+  },
+  {
+    "source": "kaizen",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "kaizen",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "operator_fatigue",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "operator_fatigue",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "high_pli",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "high_pli",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "safety_risk",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "line_imbalance",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "muri_overburden",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "pli",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "pli",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "mean_hr",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "muri_analysis",
+    "target": "mean_hr",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "fatigue_score",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "heart_rate_bpm",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "rr_interval_ms",
+    "relation": "MONITORS",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "blink_duration_ms",
+    "relation": "MONITORS",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "interblink_interval_ms",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "fatigue_classification",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "heijunka",
+    "relation": "PRECEDES",
+    "weight": 4,
+    "description": "Identifying overburden drives load-levelling via Heijunka."
+  },
+  {
+    "source": "muri_analysis",
+    "target": "sqdcm",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "kaikaku",
+    "relation": "ESCALATES_TO",
+    "weight": 3,
+    "description": "Structural ergonomic overload not solvable by pace adjustment alone."
+  },
+  {
+    "source": "muri_analysis",
+    "target": "worker_assignment",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "cross_training",
+    "relation": "USES",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "heijunka_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "muri_analysis",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "muri_analysis",
+    "target": "sustainability",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "unplanned_downtime",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "safety_risk",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "fmea",
+    "relation": "PRECEDES",
+    "weight": 4
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "a3_problem_solving",
+    "relation": "PRECEDES",
+    "weight": 5
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "kaizen",
+    "relation": "PRECEDES",
+    "weight": 4
+  },
+  {
+    "source": "root_cause_analysis",
+    "target": "dmaic_cycle",
+    "relation": "ESCALATES_TO",
+    "weight": 4,
+    "description": "When RCA reveals a statistical variation problem, escalate to DMAIC."
+  },
+  {
+    "source": "five_whys",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "five_whys",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "five_whys",
+    "target": "unplanned_downtime",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "five_whys",
+    "target": "a3_problem_solving",
+    "relation": "PRECEDES",
+    "weight": 5
+  },
+  {
+    "source": "five_whys",
+    "target": "kaizen",
+    "relation": "PRECEDES",
+    "weight": 4
+  },
+  {
+    "source": "five_whys",
+    "target": "root_cause_analysis",
+    "relation": "COMPLEMENTS",
+    "weight": 5
+  },
+  {
+    "source": "five_whys",
+    "target": "root_cause_analysis",
+    "relation": "ESCALATES_TO",
+    "weight": 4,
+    "description": "When 5 Whys is insufficient, escalate to full Ishikawa/fishbone RCA."
+  },
+  {
+    "source": "five_whys",
+    "target": "root_cause_analysis",
+    "relation": "IS_PART_OF",
+    "weight": 4
+  },
+  {
+    "source": "five_whys",
+    "target": "dmaic_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 3
+  },
+  {
+    "source": "fmea",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "fmea",
+    "target": "unplanned_downtime",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "fmea",
+    "target": "safety_risk",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "fmea",
+    "target": "safety_risk",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "fmea",
+    "target": "first_pass_yield",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "fmea",
+    "target": "mtbf",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "fmea",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "fmea",
+    "target": "poka_yoke",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "FMEA error mode analysis drives Poka-Yoke device specification."
+  },
+  {
+    "source": "fmea",
+    "target": "tpm",
+    "relation": "PRECEDES",
+    "weight": 4,
+    "description": "FMEA identifies critical failure modes for TPM prioritisation."
+  },
+  {
+    "source": "fmea",
+    "target": "maintenance_interval_products",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "fmea",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "fmea",
+    "target": "resilience",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "waiting_waste",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "waiting_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "excessive_waiting",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "unnecessary_motion",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "overproduction",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "excess_inventory",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "resource_underutilization",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "transportation_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "inventory_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "motion_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "overproduction_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "overprocessing_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "defects_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "underutilized_skills_waste",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "non_value_add_processing",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "muda_elimination",
+    "target": "lead_time",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "muda_elimination",
+    "target": "worker_idle_fraction",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "muda_elimination",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 3
+  },
+  {
+    "source": "muda_elimination",
+    "target": "sustainability",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "learning_inefficiency",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "learning_inefficiency",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "high_cycle_time",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "cycle_time_cw",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "cycle_time_cw",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "pli",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "mean_hr",
+    "relation": "MONITORS",
+    "weight": 4,
+    "note": "HR as proxy for learning stage."
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "time_motion_study",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "worker_assignment",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "learning_curve_optimization",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "line_imbalance",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "oee",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "throughput",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "pli",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "pli",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "fatigue_classification",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "standard_work",
+    "relation": "REQUIRES",
+    "weight": 3,
+    "description": "Autonomous improvement needs a defined standard as baseline."
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "kaizen",
+    "relation": "COMPLEMENTS",
+    "weight": 5,
+    "description": "MAGI automates Kaizen detection and deployment."
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "worker_assignment",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "pull_system",
+    "relation": "USES",
+    "weight": 3
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "resilience",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "continuous_autonomous_improvement",
+    "target": "sustainability",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "sqdcm",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "sqdcm",
+    "target": "low_throughput",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "sqdcm",
+    "target": "quality_defect",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "safety_risk",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "sqdcm",
+    "target": "line_imbalance",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "operator_fatigue",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "sqdcm",
+    "target": "resource_underutilization",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "sqdcm",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "increase",
+    "magnitude": 2
+  },
+  {
+    "source": "sqdcm",
+    "target": "oee",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "throughput",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "defect_rate",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "fatigue_score",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "pli",
+    "relation": "MONITORS",
+    "weight": 4
+  },
+  {
+    "source": "sqdcm",
+    "target": "andon",
+    "relation": "COMPLEMENTS",
+    "weight": 4,
+    "description": "SQDCM tracks trends; Andon handles real-time escalations."
+  },
+  {
+    "source": "sqdcm",
+    "target": "visual_management",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "sqdcm",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "five_s",
+    "target": "unnecessary_motion",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "five_s",
+    "target": "safety_risk",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "five_s",
+    "target": "safety_risk",
+    "relation": "DETECTS",
+    "weight": 3
+  },
+  {
+    "source": "five_s",
+    "target": "resource_underutilization",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "five_s",
+    "target": "motion_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "five_s",
+    "target": "transportation_waste",
+    "relation": "ELIMINATES",
+    "weight": 3
+  },
+  {
+    "source": "five_s",
+    "target": "cycle_time_cw",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "five_s",
+    "target": "worker_idle_fraction",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "five_s",
+    "target": "standard_work",
+    "relation": "PRECEDES",
+    "weight": 4
+  },
+  {
+    "source": "five_s",
+    "target": "kaizen",
+    "relation": "PRECEDES",
+    "weight": 3
+  },
+  {
+    "source": "five_s",
+    "target": "visual_management",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "five_s",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "five_s",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 3
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "root_cause_analysis",
+    "relation": "REQUIRES",
+    "weight": 4,
+    "description": "A3 gap analysis section requires root cause methodology."
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "five_whys",
+    "relation": "REQUIRES",
+    "weight": 4
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_background",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_current_state",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_target_state",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_gap_analysis",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_countermeasures",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_implementation",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "a3_follow_up",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "a3_problem_solving",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "first_pass_yield",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "six_sigma",
+    "relation": "REQUIRES",
+    "weight": 5,
+    "description": "DMAIC is the execution methodology of Six Sigma."
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "six_sigma",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "a3_problem_solving",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "dmaic_define",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "dmaic_measure",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "dmaic_analyze",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "dmaic_improve",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "dmaic_control",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "dmaic_cycle",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "kanban",
+    "target": "overproduction",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "excess_inventory",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "excessive_waiting",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "kanban",
+    "target": "bottleneck",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "kanban",
+    "target": "overproduction_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "inventory_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "waiting_waste",
+    "relation": "ELIMINATES",
+    "weight": 3
+  },
+  {
+    "source": "kanban",
+    "target": "queue_length",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "kanban",
+    "target": "lead_time",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "kanban",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "increase",
+    "magnitude": 2
+  },
+  {
+    "source": "kanban",
+    "target": "heijunka",
+    "relation": "REQUIRES",
+    "weight": 3,
+    "description": "Kanban pull system requires levelled production upstream."
+  },
+  {
+    "source": "kanban",
+    "target": "buffer_capacity",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "kanban",
+    "target": "pull_system",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "visual_management",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "supermarket_system",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "kanban",
+    "target": "heijunka_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "poka_yoke",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "quality_defect",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "poka_yoke",
+    "target": "defects_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "first_pass_yield",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "poka_yoke",
+    "target": "fmea",
+    "relation": "REQUIRES",
+    "weight": 4,
+    "description": "Poka-Yoke devices are specified from FMEA failure modes."
+  },
+  {
+    "source": "poka_yoke",
+    "target": "error_proofing_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "poka_yoke",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 3
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "kaizen",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "PDCA is the structured framework within which Kaizen executes."
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "kaizen",
+    "relation": "IS_PART_OF",
+    "weight": 4
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "a3_problem_solving",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "pdca_plan",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "pdca_do",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "pdca_check",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "pdca_act",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 3
+  },
+  {
+    "source": "pdca_cycle",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "kaikaku",
+    "target": "low_throughput",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "kaikaku",
+    "target": "line_imbalance",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "bottleneck",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "kaikaku",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "kaikaku",
+    "target": "lead_time",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 5
+  },
+  {
+    "source": "kaikaku",
+    "target": "line_balance_ratio",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "value_stream_mapping",
+    "relation": "REQUIRES",
+    "weight": 4,
+    "description": "Radical redesign requires current-state VSM as baseline."
+  },
+  {
+    "source": "kaikaku",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "kaikaku",
+    "target": "robot_speed_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "worker_assignment",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 3
+  },
+  {
+    "source": "kaikaku",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "kaikaku",
+    "target": "resilience",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "jidoka",
+    "target": "quality_defect",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "jidoka",
+    "target": "unplanned_downtime",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "defects_waste",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "jidoka",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "first_pass_yield",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "jidoka",
+    "target": "andon",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "Jidoka autonomous detection enables Andon escalation."
+  },
+  {
+    "source": "jidoka",
+    "target": "andon",
+    "relation": "COMPLEMENTS",
+    "weight": 5,
+    "description": "Jidoka stops on defect; Andon escalates the stop."
+  },
+  {
+    "source": "jidoka",
+    "target": "poka_yoke",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "robot_speed_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "autonomation_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "jidoka",
+    "target": "error_proofing_concept",
+    "relation": "USES",
+    "weight": 4
+  },
+  {
+    "source": "jidoka",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "jidoka",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "jidoka",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "six_sigma",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "six_sigma",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "six_sigma",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 5
+  },
+  {
+    "source": "six_sigma",
+    "target": "defect_rate",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "six_sigma",
+    "target": "first_pass_yield",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "six_sigma",
+    "target": "dmaic_cycle",
+    "relation": "REQUIRES",
+    "weight": 5
+  },
+  {
+    "source": "six_sigma",
+    "target": "lean_production",
+    "relation": "COMPLEMENTS",
+    "weight": 5,
+    "description": "Lean eliminates waste; Six Sigma reduces variation \u2014 Lean Six Sigma."
+  },
+  {
+    "source": "six_sigma",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "six_sigma",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "six_sigma",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "six_sigma",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "line_imbalance",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "bottleneck",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "excessive_waiting",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "operator_fatigue",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "high_pli",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "overproduction",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "mura_unevenness",
+    "relation": "ELIMINATES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "muri_overburden",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "waiting_waste",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "overproduction_waste",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "line_balance_ratio",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "line_balance_ratio",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "queue_length",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "queue_length",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "takt_time_adherence",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "pli",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "heijunka",
+    "target": "mean_hr",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "heijunka",
+    "target": "worker_idle_fraction",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "heijunka",
+    "target": "cw_utilization",
+    "relation": "MONITORS",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "mw_utilization",
+    "relation": "MONITORS",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "time_motion_study",
+    "relation": "REQUIRES",
+    "weight": 4,
+    "description": "Heijunka scheduling requires accurate task time data."
+  },
+  {
+    "source": "heijunka",
+    "target": "kanban",
+    "relation": "COMPLEMENTS",
+    "weight": 5,
+    "description": "Heijunka levels production; Kanban controls pull \u2014 together they eliminate Mura and Muda."
+  },
+  {
+    "source": "heijunka",
+    "target": "muri_analysis",
+    "relation": "COMPLEMENTS",
+    "weight": 5,
+    "description": "Both target overburden from different angles."
+  },
+  {
+    "source": "heijunka",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "worker_assignment",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "buffer_capacity",
+    "relation": "ADJUSTS",
+    "weight": 3
+  },
+  {
+    "source": "heijunka",
+    "target": "level_loading",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "takt_time_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "pacemaker_concept",
+    "relation": "USES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "heijunka_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "heijunka",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "heijunka",
+    "target": "sustainability",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "bottleneck",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "bottleneck",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "excessive_waiting",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "excessive_waiting",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "excess_inventory",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "excess_inventory",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "unnecessary_motion",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "non_value_add_processing",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "lead_time",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "muda_elimination",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "VSM identifies wastes before elimination begins."
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "heijunka",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "VSM current-state exposes imbalance for Heijunka to resolve."
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "kanban",
+    "relation": "PRECEDES",
+    "weight": 4,
+    "description": "VSM defines supermarket locations for Kanban design."
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "kaizen",
+    "relation": "PRECEDES",
+    "weight": 4,
+    "description": "VSM kaizen bursts identify targeted improvement areas."
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "time_motion_study",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "vsm_current_state",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "vsm_future_state",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "vsm_gap_analysis",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "vsm_impl_plan",
+    "relation": "HAS_PHASE",
+    "weight": 5
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "pull_system",
+    "relation": "USES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "takt_time_concept",
+    "relation": "USES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "value_stream_mapping",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 3
+  },
+  {
+    "source": "tpm",
+    "target": "unplanned_downtime",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "tpm",
+    "target": "unplanned_downtime",
+    "relation": "DETECTS",
+    "weight": 4
+  },
+  {
+    "source": "tpm",
+    "target": "resource_underutilization",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "tpm",
+    "target": "waiting_waste",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "tpm",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "tpm",
+    "target": "mtbf",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 5
+  },
+  {
+    "source": "tpm",
+    "target": "mtbf",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "tpm",
+    "target": "mttr",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 4
+  },
+  {
+    "source": "tpm",
+    "target": "mttr",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "tpm",
+    "target": "robot_utilization",
+    "relation": "IMPROVES",
+    "weight": 5,
+    "direction": "increase",
+    "magnitude": 4
+  },
+  {
+    "source": "tpm",
+    "target": "robot_utilization",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "tpm",
+    "target": "jidoka",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "tpm",
+    "target": "maintenance_interval_products",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "tpm",
+    "target": "robot_speed_factor",
+    "relation": "ADJUSTS",
+    "weight": 3
+  },
+  {
+    "source": "tpm",
+    "target": "visual_management",
+    "relation": "USES",
+    "weight": 3
+  },
+  {
+    "source": "tpm",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "tpm",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 3
+  },
+  {
+    "source": "tpm",
+    "target": "sustainability",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "tpm",
+    "target": "resilience",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "knowledge_loss",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "throughput",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "kaikaku",
+    "relation": "PRECEDES",
+    "weight": 4,
+    "description": "Strategic alignment via Hoshin precedes radical redesign."
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "sqdcm",
+    "relation": "REQUIRES",
+    "weight": 3,
+    "description": "Policy deployment requires performance monitoring infrastructure."
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "sqdcm",
+    "relation": "COMPLEMENTS",
+    "weight": 4
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "shift_duration_hours",
+    "relation": "ADJUSTS",
+    "weight": 3
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "visual_management",
+    "relation": "USES",
+    "weight": 3
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "hoshin_kanri",
+    "target": "resilience",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "andon",
+    "target": "quality_defect",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "andon",
+    "target": "quality_defect",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "unplanned_downtime",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "andon",
+    "target": "unplanned_downtime",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "safety_risk",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "safety_risk",
+    "relation": "DETECTS",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "operator_fatigue",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "andon",
+    "target": "operator_fatigue",
+    "relation": "DETECTS",
+    "weight": 5,
+    "note": "MAGI Andon = edge layer fatigue alert"
+  },
+  {
+    "source": "andon",
+    "target": "mttr",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "andon",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 3,
+    "direction": "decrease",
+    "magnitude": 2
+  },
+  {
+    "source": "andon",
+    "target": "defect_rate",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "robot_utilization",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "fatigue_score",
+    "relation": "MONITORS",
+    "weight": 5,
+    "note": "MAGI: Edge layer feeds Andon"
+  },
+  {
+    "source": "andon",
+    "target": "fatigue_classification",
+    "relation": "MONITORS",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "root_cause_analysis",
+    "relation": "ESCALATES_TO",
+    "weight": 4,
+    "description": "Repeated Andon triggers warrant root cause investigation."
+  },
+  {
+    "source": "andon",
+    "target": "visual_management",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "jidoka_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "andon",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 5
+  },
+  {
+    "source": "andon",
+    "target": "technology_synergy",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "process_variability",
+    "relation": "ADDRESSES",
+    "weight": 5
+  },
+  {
+    "source": "standard_work",
+    "target": "high_cycle_time",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "knowledge_loss",
+    "relation": "ADDRESSES",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "overprocessing_waste",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "motion_waste",
+    "relation": "ELIMINATES",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "cycle_time_cw",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "standard_work",
+    "target": "defect_rate",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "decrease",
+    "magnitude": 3
+  },
+  {
+    "source": "standard_work",
+    "target": "oee",
+    "relation": "IMPROVES",
+    "weight": 4,
+    "direction": "increase",
+    "magnitude": 3
+  },
+  {
+    "source": "standard_work",
+    "target": "kaizen",
+    "relation": "PRECEDES",
+    "weight": 5,
+    "description": "Standard work establishes the baseline Kaizen improves upon."
+  },
+  {
+    "source": "standard_work",
+    "target": "time_motion_study",
+    "relation": "REQUIRES",
+    "weight": 5,
+    "description": "Standard work is built from time study measurements."
+  },
+  {
+    "source": "standard_work",
+    "target": "takt_time_param",
+    "relation": "ADJUSTS",
+    "weight": 5
+  },
+  {
+    "source": "standard_work",
+    "target": "production_pace_factor",
+    "relation": "ADJUSTS",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "takt_time_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "standard_work",
+    "target": "standard_work_concept",
+    "relation": "USES",
+    "weight": 5
+  },
+  {
+    "source": "standard_work",
+    "target": "jit",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "kaizen_pillar",
+    "relation": "EMBODIES",
+    "weight": 5
+  },
+  {
+    "source": "standard_work",
+    "target": "respect_for_people",
+    "relation": "EMBODIES",
+    "weight": 4
+  },
+  {
+    "source": "standard_work",
+    "target": "human_centricity",
+    "relation": "ALIGNS_WITH",
+    "weight": 4
+  },
+  {
+    "source": "bottleneck",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "bottleneck",
+    "target": "kanban",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "bottleneck",
+    "target": "value_stream_mapping",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "bottleneck",
+    "target": "kaikaku",
+    "relation": "TRIGGERS",
+    "weight": 3
+  },
+  {
+    "source": "bottleneck",
+    "target": "mw_utilization",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "bottleneck",
+    "target": "queue_length",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "bottleneck",
+    "target": "throughput",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "muri_analysis",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "andon",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "fatigue_score",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "pli",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "mean_hr",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "heart_rate_bpm",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "operator_fatigue",
+    "target": "fatigue_classification",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "high_cycle_time",
+    "target": "time_motion_study",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "high_cycle_time",
+    "target": "kaizen",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "high_cycle_time",
+    "target": "standard_work",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "high_cycle_time",
+    "target": "cycle_time_cw",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "high_cycle_time",
+    "target": "cycle_time_mw",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "low_throughput",
+    "target": "value_stream_mapping",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "low_throughput",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "low_throughput",
+    "target": "kaizen",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "low_throughput",
+    "target": "throughput",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "quality_defect",
+    "target": "root_cause_analysis",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "quality_defect",
+    "target": "five_whys",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "quality_defect",
+    "target": "poka_yoke",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "quality_defect",
+    "target": "jidoka",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "quality_defect",
+    "target": "fmea",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "quality_defect",
+    "target": "andon",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "quality_defect",
+    "target": "defect_rate",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "quality_defect",
+    "target": "first_pass_yield",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "unplanned_downtime",
+    "target": "tpm",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "unplanned_downtime",
+    "target": "fmea",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "unplanned_downtime",
+    "target": "andon",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "unplanned_downtime",
+    "target": "mtbf",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "unplanned_downtime",
+    "target": "mttr",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "unplanned_downtime",
+    "target": "oee",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "line_imbalance",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "line_imbalance",
+    "target": "time_motion_study",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "line_imbalance",
+    "target": "line_balance_ratio",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "line_imbalance",
+    "target": "cw_utilization",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "line_imbalance",
+    "target": "mw_utilization",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "excessive_waiting",
+    "target": "kanban",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "excessive_waiting",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "excessive_waiting",
+    "target": "queue_length",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "excessive_waiting",
+    "target": "lead_time",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "overproduction",
+    "target": "kanban",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "overproduction",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "excess_inventory",
+    "target": "kanban",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "excess_inventory",
+    "target": "muda_elimination",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "unnecessary_motion",
+    "target": "five_s",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "unnecessary_motion",
+    "target": "muda_elimination",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "high_pli",
+    "target": "muri_analysis",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "high_pli",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "high_pli",
+    "target": "andon",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "high_pli",
+    "target": "pli",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "high_pli",
+    "target": "mean_hr",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "learning_inefficiency",
+    "target": "learning_curve_optimization",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "learning_inefficiency",
+    "target": "standard_work",
+    "relation": "TRIGGERS",
+    "weight": 3
+  },
+  {
+    "source": "process_variability",
+    "target": "six_sigma",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "process_variability",
+    "target": "dmaic_cycle",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "process_variability",
+    "target": "standard_work",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "process_variability",
+    "target": "cycle_time_cw",
+    "relation": "MEASURED_BY",
+    "weight": 4
+  },
+  {
+    "source": "resource_underutilization",
+    "target": "time_motion_study",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "resource_underutilization",
+    "target": "heijunka",
+    "relation": "TRIGGERS",
+    "weight": 3
+  },
+  {
+    "source": "resource_underutilization",
+    "target": "cw_utilization",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "resource_underutilization",
+    "target": "worker_idle_fraction",
+    "relation": "MEASURED_BY",
+    "weight": 5
+  },
+  {
+    "source": "safety_risk",
+    "target": "fmea",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "safety_risk",
+    "target": "five_s",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "safety_risk",
+    "target": "andon",
+    "relation": "TRIGGERS",
+    "weight": 5
+  },
+  {
+    "source": "knowledge_loss",
+    "target": "standard_work",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "knowledge_loss",
+    "target": "hoshin_kanri",
+    "relation": "TRIGGERS",
+    "weight": 4
+  },
+  {
+    "source": "robot_speed_factor",
+    "target": "cycle_time_cw",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "inverse"
+  },
+  {
+    "source": "robot_speed_factor",
+    "target": "robot_utilization",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "direct"
+  },
+  {
+    "source": "robot_speed_factor",
+    "target": "throughput",
+    "relation": "INFLUENCES",
+    "weight": 3,
+    "direction": "direct"
+  },
+  {
+    "source": "worker_assignment",
+    "target": "cycle_time_cw",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "depends_on_worker"
+  },
+  {
+    "source": "worker_assignment",
+    "target": "cycle_time_mw",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "depends_on_worker"
+  },
+  {
+    "source": "worker_assignment",
+    "target": "pli",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "depends_on_worker"
+  },
+  {
+    "source": "worker_assignment",
+    "target": "mean_hr",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "depends_on_worker"
+  },
+  {
+    "source": "worker_assignment",
+    "target": "fatigue_score",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "depends_on_worker"
+  },
+  {
+    "source": "production_pace_factor",
+    "target": "throughput",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "production_pace_factor",
+    "target": "cycle_time_cw",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "inverse"
+  },
+  {
+    "source": "production_pace_factor",
+    "target": "queue_length",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "direct"
+  },
+  {
+    "source": "production_pace_factor",
+    "target": "pli",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "direct"
+  },
+  {
+    "source": "production_pace_factor",
+    "target": "mean_hr",
+    "relation": "INFLUENCES",
+    "weight": 3,
+    "direction": "direct"
+  },
+  {
+    "source": "takt_time_param",
+    "target": "takt_time_adherence",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "takt_time_param",
+    "target": "throughput",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "inverse"
+  },
+  {
+    "source": "takt_time_param",
+    "target": "cycle_time_cw",
+    "relation": "INFLUENCES",
+    "weight": 3,
+    "direction": "direct"
+  },
+  {
+    "source": "buffer_capacity",
+    "target": "queue_length",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "buffer_capacity",
+    "target": "cw_utilization",
+    "relation": "INFLUENCES",
+    "weight": 3,
+    "direction": "direct"
+  },
+  {
+    "source": "buffer_capacity",
+    "target": "lead_time",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "direct"
+  },
+  {
+    "source": "shift_duration_hours",
+    "target": "throughput",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "shift_duration_hours",
+    "target": "fatigue_score",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "shift_duration_hours",
+    "target": "pli",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "maintenance_interval_products",
+    "target": "mtbf",
+    "relation": "INFLUENCES",
+    "weight": 5,
+    "direction": "direct"
+  },
+  {
+    "source": "maintenance_interval_products",
+    "target": "robot_utilization",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "inverse"
+  },
+  {
+    "source": "maintenance_interval_products",
+    "target": "oee",
+    "relation": "INFLUENCES",
+    "weight": 4,
+    "direction": "direct"
+  },
+  {
+    "source": "heart_rate_bpm",
+    "target": "operator_fatigue",
+    "relation": "SIGNALS",
+    "weight": 5,
+    "condition": "HR > baseline + 2\u03c3"
+  },
+  {
+    "source": "heart_rate_bpm",
+    "target": "high_pli",
+    "relation": "SIGNALS",
+    "weight": 5,
+    "condition": "HR sustained elevation"
+  },
+  {
+    "source": "rr_interval_ms",
+    "target": "operator_fatigue",
+    "relation": "SIGNALS",
+    "weight": 4,
+    "condition": "RMSSD < 20ms"
+  },
+  {
+    "source": "rr_interval_ms",
+    "target": "safety_risk",
+    "relation": "SIGNALS",
+    "weight": 3,
+    "condition": "Extreme HRV depression"
+  },
+  {
+    "source": "blink_duration_ms",
+    "target": "operator_fatigue",
+    "relation": "SIGNALS",
+    "weight": 4,
+    "condition": "Blink duration > 500ms"
+  },
+  {
+    "source": "interblink_interval_ms",
+    "target": "operator_fatigue",
+    "relation": "SIGNALS",
+    "weight": 5,
+    "condition": "IBI trending > 30% above baseline"
+  },
+  {
+    "source": "interblink_interval_ms",
+    "target": "high_pli",
+    "relation": "SIGNALS",
+    "weight": 4,
+    "condition": "IBI paradoxical increase under extreme load"
+  },
+  {
+    "source": "fixation_duration_ms",
+    "target": "operator_fatigue",
+    "relation": "SIGNALS",
+    "weight": 3,
+    "condition": "Very long fixations > 800ms"
+  },
+  {
+    "source": "saccade_amplitude_deg",
+    "target": "process_variability",
+    "relation": "SIGNALS",
+    "weight": 2,
+    "condition": "High saccade variance correlates with attention variability"
+  },
+  {
+    "source": "fatigue_classification",
+    "target": "operator_fatigue",
+    "relation": "SIGNALS",
+    "weight": 5,
+    "condition": "label == 'Fatigue Warning'"
+  },
+  {
+    "source": "fatigue_classification",
+    "target": "high_pli",
+    "relation": "SIGNALS",
+    "weight": 5,
+    "condition": "label == 'Elevated Load' or 'Fatigue Warning'"
+  },
+  {
+    "source": "fatigue_classification",
+    "target": "safety_risk",
+    "relation": "SIGNALS",
+    "weight": 4,
+    "condition": "label == 'Fatigue Warning'"
+  },
+  {
+    "source": "dmaic_define",
+    "target": "dmaic_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_measure",
+    "target": "dmaic_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_analyze",
+    "target": "dmaic_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_improve",
+    "target": "dmaic_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "dmaic_control",
+    "target": "dmaic_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "pdca_plan",
+    "target": "pdca_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "pdca_do",
+    "target": "pdca_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "pdca_check",
+    "target": "pdca_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "pdca_act",
+    "target": "pdca_cycle",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_background",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_current_state",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_target_state",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_gap_analysis",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_countermeasures",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_implementation",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "a3_follow_up",
+    "target": "a3_problem_solving",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "vsm_current_state",
+    "target": "value_stream_mapping",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "vsm_future_state",
+    "target": "value_stream_mapping",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "vsm_gap_analysis",
+    "target": "value_stream_mapping",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  },
+  {
+    "source": "vsm_impl_plan",
+    "target": "value_stream_mapping",
+    "relation": "IS_PART_OF",
+    "weight": 5
+  }
+]
