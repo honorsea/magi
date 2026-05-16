@@ -251,7 +251,7 @@ class SimulationManager:
 
             # ── Build step_callback ────────────────────────────────────────
             def step_callback(env, task_log, physio_log):
-                """Called after every SimPy event in real-time mode."""
+                """Called after every SimPy event (realtime and non-realtime)."""
                 # Pause/stop handling
                 while pause_ev.is_set() and not stop_ev.is_set():
                     time.sleep(0.05)
@@ -328,7 +328,7 @@ class SimulationManager:
                 duration_hours=duration_hours,
                 seed=seed,
                 realtime=use_realtime,
-                step_callback=step_callback if use_realtime else None,
+                step_callback=step_callback,
                 event_sink=event_sink,
             )
 
