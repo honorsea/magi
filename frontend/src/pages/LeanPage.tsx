@@ -161,6 +161,8 @@ export const LeanPage: React.FC = () => {
   const [meta, setMeta] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [malformed, setMalformed] = useState<string | null>(null);
+  const [diagnostic, setDiagnostic] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [search, setSearch] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
@@ -168,10 +170,27 @@ export const LeanPage: React.FC = () => {
 
   useEffect(() => {
     api.lean.getGraph()
-      .then(({ nodes: n, edges: e, meta: m }) => {
+      .then((payload: any) => {
+        if (payload?.error) {
+          setDiagnostic(`API returned an error payload: ${payload.error}`);
+          setNodes([]);
+          setEdges([]);
+          setMeta(payload?.meta ?? null);
+          setLoading(false);
+          return;
+        }
+        if (!payload || !Array.isArray(payload.nodes) || !Array.isArray(payload.edges)) {
+          setMalformed('Expected object with arrays at payload.nodes and payload.edges.');
+          setLoading(false);
+          return;
+        }
+        const { nodes: n, edges: e, meta: m } = payload;
         setNodes(n as GraphNode[]);
         setEdges(e as GraphEdge[]);
         setMeta(m);
+        if ((n as GraphNode[]).length === 0) {
+          setDiagnostic('Graph payload loaded, but nodes array is empty.');
+        }
         setLoading(false);
       })
       .catch(err => { setError(err.message); setLoading(false); });
@@ -288,6 +307,14 @@ export const LeanPage: React.FC = () => {
       </div>
     </div>
   );
+  if (malformed) return (
+    <div style={{ padding: '40px' }}>
+      <div style={{ padding: '16px', background: 'hsl(35,100%,96%)', border: '1px solid hsl(35,70%,80%)', borderRadius: '8px' }}>
+        <strong>Malformed payload from Lean API</strong>
+        <div style={{ marginTop: '8px', fontSize: '13px' }}>{malformed}</div>
+      </div>
+    </div>
+  );
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '12px' }}>
@@ -341,6 +368,17 @@ export const LeanPage: React.FC = () => {
 
       {/* Graph canvas area */}
       <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+        {diagnostic && (
+          <div style={{ marginBottom: '10px', padding: '12px', background: 'hsl(38,100%,96%)', border: '1px solid hsl(38,80%,78%)', borderRadius: '8px' }}>
+            <div style={{ fontWeight: 600, marginBottom: '6px' }}>Lean graph diagnostics</div>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>{diagnostic}</div>
+            <ul style={{ margin: '8px 0 0 18px', fontSize: '12px', color: 'var(--text-secondary)' }}>
+              <li>Checked endpoint: <code>/api/lean/graph</code></li>
+              <li>Expected data path: <code>payload.nodes[]</code>, <code>payload.edges[]</code>, optional <code>payload.meta</code></li>
+              <li>Action: verify Lean KG generation and API router health.</li>
+            </ul>
+          </div>
+        )}
         <div className="card" style={{ width: '100%', height: '100%', overflow: 'hidden', padding: 0 }}>
           <svg ref={svgRef} width="100%" height="100%" />
         </div>

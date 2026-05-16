@@ -8,7 +8,7 @@ CORS, static file serving, and startup/shutdown lifecycle hooks.
 import asyncio
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -91,6 +91,10 @@ def create_app() -> FastAPI:
 
         @app.get("/{full_path:path}", include_in_schema=False)
         async def serve_spa(full_path: str):
+            # Guard against accidental collisions with API namespace.
+            # API routers are mounted above this catch-all and should resolve first.
+            if full_path.startswith("api/") or full_path == "api":
+                raise HTTPException(status_code=404, detail="API route not found")
             index = _STATIC_DIR / "index.html"
             if index.exists():
                 return FileResponse(str(index))

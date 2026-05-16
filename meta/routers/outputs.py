@@ -30,13 +30,27 @@ class FileEntry(BaseModel):
     type: str   # "json" | "csv" | "png" | "txt" | "other"
 
 
-@router.get("/", response_model=List[FileEntry])
+class OutputListResponse(BaseModel):
+    files: List[FileEntry]
+    meta: dict
+
+
+@router.get("/", response_model=OutputListResponse)
 async def list_output_files(subdir: Optional[str] = None):
     """List files in the outputs directory."""
     base = _get_output_dir()
     target = base / subdir if subdir else base
     if not target.exists():
-        return []
+        return {
+            "files": [],
+            "meta": {
+                "outputs_root": str(base.resolve()),
+                "target": str(target.resolve()),
+                "subdir": subdir,
+                "exists": False,
+                "count": 0,
+            },
+        }
 
     entries = []
     for p in sorted(target.iterdir(), key=lambda x: x.stat().st_mtime, reverse=True):
@@ -51,7 +65,16 @@ async def list_output_files(subdir: Optional[str] = None):
                 modified_at=p.stat().st_mtime,
                 type=suffix,
             ))
-    return entries
+    return {
+        "files": entries,
+        "meta": {
+            "outputs_root": str(base.resolve()),
+            "target": str(target.resolve()),
+            "subdir": subdir,
+            "exists": True,
+            "count": len(entries),
+        },
+    }
 
 
 @router.get("/download/{file_path:path}")
