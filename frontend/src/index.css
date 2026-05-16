@@ -12,6 +12,24 @@
   --accent-amber:    hsl(38, 92%, 45%);    /* Warning/elevated */
   --accent-red:      hsl(0, 84%, 50%);     /* Critical/error */
   --accent-purple:   hsl(262, 83%, 55%);   /* Agent/AI elements */
+  --tool-card-bg:    hsl(262, 60%, 97%);
+  --tool-card-border:hsl(262, 60%, 88%);
+  --tool-card-text:  hsl(262, 70%, 34%);
+  --tool-card-subtle-text: hsl(262, 35%, 48%);
+  --tool-card-pre-bg:hsl(262, 60%, 94%);
+  --status-warning-bg: hsl(38, 100%, 95%);
+  --status-warning-border: hsl(38, 70%, 74%);
+  --status-warning-text: hsl(35, 75%, 28%);
+  --status-error-bg: hsl(0, 70%, 97%);
+  --status-error-border: hsl(0, 60%, 84%);
+  --status-error-text: hsl(0, 72%, 36%);
+  --kg-category-pull-system: hsl(217, 80%, 55%);
+  --kg-category-waste-reduction: hsl(35, 80%, 50%);
+  --kg-category-quality: hsl(142, 65%, 45%);
+  --kg-category-flow: hsl(262, 70%, 55%);
+  --kg-category-people: hsl(0, 70%, 55%);
+  --kg-category-standardization: hsl(180, 60%, 45%);
+  --kg-category-default: hsl(220, 15%, 60%);
   --shadow:          0 1px 3px rgba(0,0,0,0.08);  /* Card shadows */
   
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -32,6 +50,24 @@
   --accent-amber:    hsl(38, 92%, 50%);
   --accent-red:      hsl(0, 84%, 60%);
   --accent-purple:   hsl(262, 83%, 62%);
+  --tool-card-bg:    hsl(262, 36%, 18%);
+  --tool-card-border:hsl(262, 30%, 30%);
+  --tool-card-text:  hsl(262, 88%, 84%);
+  --tool-card-subtle-text: hsl(262, 35%, 72%);
+  --tool-card-pre-bg:hsl(262, 34%, 22%);
+  --status-warning-bg: hsl(38, 38%, 22%);
+  --status-warning-border: hsl(38, 44%, 36%);
+  --status-warning-text: hsl(42, 95%, 82%);
+  --status-error-bg: hsl(0, 36%, 20%);
+  --status-error-border: hsl(0, 36%, 34%);
+  --status-error-text: hsl(0, 90%, 84%);
+  --kg-category-pull-system: hsl(217, 85%, 68%);
+  --kg-category-waste-reduction: hsl(35, 85%, 62%);
+  --kg-category-quality: hsl(142, 66%, 58%);
+  --kg-category-flow: hsl(262, 78%, 72%);
+  --kg-category-people: hsl(0, 82%, 70%);
+  --kg-category-standardization: hsl(180, 68%, 60%);
+  --kg-category-default: hsl(220, 16%, 70%);
   --shadow:          0 1px 3px rgba(0,0,0,0.3);
 }
 

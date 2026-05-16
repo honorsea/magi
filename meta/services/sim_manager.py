@@ -17,6 +17,7 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List, Literal, Optional
 
 from magi.digital.config import ConfigState
+from magi.digital.kpi import KPIComputer
 from magi.digital.twin import DigitalTwin
 from magi.meta.services.event_bridge import EventBridge
 from magi.meta.services import db as _db
@@ -216,8 +217,8 @@ class SimulationManager:
         try:
             bridge = session.bridge
             task_count = [0]
-            # Emit a live kpi_snapshot every N task completions
-            KPI_INTERVAL = 30
+            last_snapshot_sim_t = [0.0]
+            kpi_computer = KPIComputer()
 
             def event_sink(event_type: str, data: Dict[str, Any]) -> None:
                 """Called from the SimPy process thread for every task event."""
@@ -251,7 +252,7 @@ class SimulationManager:
 
             # ── Build step_callback ────────────────────────────────────────
             def step_callback(env, task_log, physio_log):
-                """Called after every SimPy event in real-time mode."""
+                """Called after every SimPy event (realtime and non-realtime)."""
                 # Pause/stop handling
                 while pause_ev.is_set() and not stop_ev.is_set():
                     time.sleep(0.05)
@@ -278,33 +279,29 @@ class SimulationManager:
 
                 # Live KPI emission every KPI_INTERVAL task completions
                 n = task_count[0]
-                if n > 0 and n % KPI_INTERVAL == 0 and bridge:
-                    cw_phys = [p for p in physio_log if p.workstation == "CW"]
-                    mw_phys = [p for p in physio_log if p.workstation == "MW"]
-                    mw_complete = [t for t in task_log if t.workstation == "MW" and t.task_label == "07_bag_leave"]
-
-                    def _mean(lst, attr, window=20):
-                        sub = lst[-window:] if len(lst) >= window else lst
-                        if not sub:
-                            return 0.0
-                        return sum(getattr(p, attr) for p in sub) / len(sub)
-
-                    kpis = {
-                        "throughput_total":    len(mw_complete),
-                        "throughput_dropped":  0,
-                        "cw_hr_mean":          _mean(cw_phys, "hr_bpm"),
-                        "mw_hr_mean":          _mean(mw_phys, "hr_bpm"),
-                        "cw_fatigue_mean":     _mean(cw_phys, "fatigue_score"),
-                        "mw_fatigue_mean":     _mean(mw_phys, "fatigue_score"),
-                        # Approximations — real KPIs computed at end
-                        "oee":                 0.85,
-                        "line_balance_ratio":  0.85,
-                        "takt_adherence":      0.95,
-                        "cw_utilization":      0.80,
-                        "mw_utilization":      0.80,
-                        "robot_utilization":   0.50,
-                    }
+                task_interval = max(0, int(session.config.kpi_snapshot_interval_tasks))
+                sim_s_interval = max(0.0, float(session.config.kpi_snapshot_interval_sim_s))
+                due_by_tasks = task_interval > 0 and n > 0 and (n % task_interval == 0)
+                due_by_time = sim_s_interval > 0 and (env.now - last_snapshot_sim_t[0]) >= sim_s_interval
+                if bridge and (due_by_tasks or due_by_time):
+                    cw_busy = [tr.phase_duration for tr in task_log if tr.workstation == "CW"]
+                    mw_busy = [tr.phase_duration for tr in task_log if tr.workstation == "MW"]
+                    robot_busy = [tr.phase_duration for tr in task_log if tr.is_robot_phase]
+                    completed_ids = [tr.product_id for tr in task_log]
+                    generated = (max(completed_ids) + 1) if completed_ids else 0
+                    kpis = kpi_computer.compute(
+                        task_log=task_log,
+                        physio_log=physio_log,
+                        config=session.config,
+                        duration_hours=max(env.now / 3600.0, 1e-9),
+                        cw_busy_time=cw_busy,
+                        mw_busy_time=mw_busy,
+                        robot_busy=robot_busy,
+                        generated=generated,
+                        dropped=0,
+                    )
                     bridge.emit("kpi_snapshot", {"sim_time_s": env.now, **kpis})
+                    last_snapshot_sim_t[0] = env.now
 
             # ── Apply speed factor and build DigitalTwin ───────────────────
             use_realtime = speed_factor > 0
@@ -328,7 +325,7 @@ class SimulationManager:
                 duration_hours=duration_hours,
                 seed=seed,
                 realtime=use_realtime,
-                step_callback=step_callback if use_realtime else None,
+                step_callback=step_callback,
                 event_sink=event_sink,
             )
 

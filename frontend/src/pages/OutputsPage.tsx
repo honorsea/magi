@@ -22,10 +22,10 @@ const formatDate = (ts: number) => {
 
 const FileIcon: React.FC<{ type: string; size?: number }> = ({ type, size = 16 }) => {
   switch (type) {
-    case 'csv': return <FileSpreadsheet size={size} color="hsl(142,65%,45%)" />;
+    case 'csv': return <FileSpreadsheet size={size} color="var(--accent-green)" />;
     case 'png':
-    case 'jpg': return <ImageIcon size={size} color="hsl(35,80%,50%)" />;
-    case 'json': return <FileJson size={size} color="hsl(262,70%,55%)" />;
+    case 'jpg': return <ImageIcon size={size} color="var(--accent-amber)" />;
+    case 'json': return <FileJson size={size} color="var(--accent-purple)" />;
     default: return <FileText size={size} color="var(--text-secondary)" />;
   }
 };
@@ -38,13 +38,22 @@ export const OutputsPage: React.FC = () => {
   const [previewContent, setPreviewContent] = useState<{ content: string; truncated: boolean } | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [malformed, setMalformed] = useState<string | null>(null);
+  const [responseMeta, setResponseMeta] = useState<any>(null);
 
   const fetchFiles = async () => {
     setLoading(true);
     setError(null);
+    setMalformed(null);
     try {
       const data = await api.outputs.list();
-      setFiles(data);
+      if (!data || !Array.isArray(data.files)) {
+        setMalformed('Expected response shape: { files: FileEntry[], meta?: object }.');
+        setFiles([]);
+      } else {
+        setFiles(data.files);
+      }
+      setResponseMeta(data?.meta ?? null);
     } catch (err: any) {
       setError(err.message);
     }
@@ -118,15 +127,24 @@ export const OutputsPage: React.FC = () => {
         </div>
 
         {error ? (
-          <div style={{ padding: '16px', background: 'hsl(0,60%,97%)', border: '1px solid hsl(0,60%,85%)', borderRadius: '8px', color: 'var(--accent-red)', display: 'flex', gap: '8px' }}>
+          <div style={{ padding: '16px', background: 'var(--status-error-bg)', border: '1px solid var(--status-error-border)', borderRadius: '8px', color: 'var(--accent-red)', display: 'flex', gap: '8px' }}>
             <AlertCircle size={18} /> Failed to load files: {error}
           </div>
         ) : loading && files.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-secondary)' }}>Loading files…</div>
+        ) : malformed ? (
+          <div style={{ padding: '16px', background: 'hsl(35,100%,96%)', border: '1px solid hsl(35,70%,80%)', borderRadius: '8px', color: 'hsl(35,80%,28%)' }}>
+            <AlertCircle size={18} style={{ verticalAlign: 'middle', marginRight: '8px' }} />
+            Malformed API payload: {malformed}
+          </div>
         ) : filtered.length === 0 ? (
           <div className="card" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)' }}>
             <FileText size={48} style={{ opacity: 0.2, marginBottom: '16px' }} />
             <div>No files found matching "{search}"</div>
+            <div style={{ marginTop: '12px', fontSize: '12px', textAlign: 'left', display: 'inline-block' }}>
+              <div><strong>Configured outputs root:</strong> <code>{responseMeta?.outputs_root ?? 'unknown'}</code></div>
+              <div><strong>API metadata:</strong> <code>{JSON.stringify(responseMeta ?? { note: 'No metadata provided' })}</code></div>
+            </div>
           </div>
         ) : (
           <div className="card" style={{ flex: 1, overflowY: 'auto', padding: 0 }}>
@@ -208,7 +226,7 @@ export const OutputsPage: React.FC = () => {
             ) : previewContent ? (
               <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {previewContent.truncated && (
-                  <div style={{ background: 'hsl(38,100%,96%)', color: 'hsl(38,80%,40%)', padding: '8px 12px', fontSize: '12px', borderRadius: '4px', marginBottom: '12px', flexShrink: 0 }}>
+                  <div style={{ background: 'var(--status-warning-bg)', color: 'var(--status-warning-text)', padding: '8px 12px', fontSize: '12px', borderRadius: '4px', marginBottom: '12px', flexShrink: 0 }}>
                     File is large. Showing preview of the first 5000 characters. Download to see full content.
                   </div>
                 )}

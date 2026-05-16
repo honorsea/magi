@@ -21,19 +21,19 @@ interface GraphEdge extends d3.SimulationLinkDatum<GraphNode> {
 }
 
 const NODE_COLORS: Record<string, string> = {
-  lean_method:  'hsl(217, 80%, 55%)',
-  problem_type: 'hsl(0,   70%, 55%)',
-  kpi:          'hsl(142, 65%, 45%)',
-  default:      'hsl(220, 15%, 60%)',
+  lean_method:  'var(--kg-category-pull-system)',
+  problem_type: 'var(--kg-category-people)',
+  kpi:          'var(--kg-category-quality)',
+  default:      'var(--kg-category-default)',
 };
 
 const KG_CATEGORIES: Record<string, string> = {
-  'Pull System':       'hsl(217, 80%, 55%)',
-  'Waste Reduction':   'hsl(35,  80%, 50%)',
-  'Quality':           'hsl(142, 65%, 45%)',
-  'Flow':              'hsl(262, 70%, 55%)',
-  'People':            'hsl(0,   70%, 55%)',
-  'Standardization':   'hsl(180, 60%, 45%)',
+  'Pull System':       'var(--kg-category-pull-system)',
+  'Waste Reduction':   'var(--kg-category-waste-reduction)',
+  'Quality':           'var(--kg-category-quality)',
+  'Flow':              'var(--kg-category-flow)',
+  'People':            'var(--kg-category-people)',
+  'Standardization':   'var(--kg-category-standardization)',
 };
 
 // ── Method Detail Panel ───────────────────────────────────────────────────────
@@ -99,7 +99,7 @@ const MethodDetail: React.FC<{ node: GraphNode | null; onClose: () => void }> = 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '4px' }}>
                   {detail.method.waste_types.map((w: string) => (
                     <span key={w} style={{ fontSize: '11px', padding: '2px 6px',
-                      background: 'hsl(35,80%,90%)', color: 'hsl(35,80%,30%)', borderRadius: '4px' }}>{w}</span>
+                      background: 'var(--status-warning-bg)', color: 'var(--status-warning-text)', borderRadius: '4px' }}>{w}</span>
                   ))}
                 </div>
               </div>
@@ -161,6 +161,8 @@ export const LeanPage: React.FC = () => {
   const [meta, setMeta] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [malformed, setMalformed] = useState<string | null>(null);
+  const [diagnostic, setDiagnostic] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [search, setSearch] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
@@ -168,10 +170,27 @@ export const LeanPage: React.FC = () => {
 
   useEffect(() => {
     api.lean.getGraph()
-      .then(({ nodes: n, edges: e, meta: m }) => {
+      .then((payload: any) => {
+        if (payload?.error) {
+          setDiagnostic(`API returned an error payload: ${payload.error}`);
+          setNodes([]);
+          setEdges([]);
+          setMeta(payload?.meta ?? null);
+          setLoading(false);
+          return;
+        }
+        if (!payload || !Array.isArray(payload.nodes) || !Array.isArray(payload.edges)) {
+          setMalformed('Expected object with arrays at payload.nodes and payload.edges.');
+          setLoading(false);
+          return;
+        }
+        const { nodes: n, edges: e, meta: m } = payload;
         setNodes(n as GraphNode[]);
         setEdges(e as GraphEdge[]);
         setMeta(m);
+        if ((n as GraphNode[]).length === 0) {
+          setDiagnostic('Graph payload loaded, but nodes array is empty.');
+        }
         setLoading(false);
       })
       .catch(err => { setError(err.message); setLoading(false); });
@@ -279,12 +298,20 @@ export const LeanPage: React.FC = () => {
 
   if (error) return (
     <div style={{ padding: '40px' }}>
-      <div style={{ padding: '16px', background: 'hsl(0,60%,97%)', border: '1px solid hsl(0,60%,85%)',
+      <div style={{ padding: '16px', background: 'var(--status-error-bg)', border: '1px solid var(--status-error-border)',
         borderRadius: '8px', color: 'var(--accent-red)' }}>
         Failed to load Lean Knowledge Graph: {error}
         <div style={{ fontSize: '12px', marginTop: '4px', color: 'var(--text-secondary)' }}>
           Ensure <code>lean_kg_output/nodes.json</code> and <code>edges.json</code> exist.
         </div>
+      </div>
+    </div>
+  );
+  if (malformed) return (
+    <div style={{ padding: '40px' }}>
+      <div style={{ padding: '16px', background: 'hsl(35,100%,96%)', border: '1px solid hsl(35,70%,80%)', borderRadius: '8px' }}>
+        <strong>Malformed payload from Lean API</strong>
+        <div style={{ marginTop: '8px', fontSize: '13px' }}>{malformed}</div>
       </div>
     </div>
   );
@@ -341,6 +368,17 @@ export const LeanPage: React.FC = () => {
 
       {/* Graph canvas area */}
       <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+        {diagnostic && (
+          <div style={{ marginBottom: '10px', padding: '12px', background: 'hsl(38,100%,96%)', border: '1px solid hsl(38,80%,78%)', borderRadius: '8px' }}>
+            <div style={{ fontWeight: 600, marginBottom: '6px' }}>Lean graph diagnostics</div>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>{diagnostic}</div>
+            <ul style={{ margin: '8px 0 0 18px', fontSize: '12px', color: 'var(--text-secondary)' }}>
+              <li>Checked endpoint: <code>/api/lean/graph</code></li>
+              <li>Expected data path: <code>payload.nodes[]</code>, <code>payload.edges[]</code>, optional <code>payload.meta</code></li>
+              <li>Action: verify Lean KG generation and API router health.</li>
+            </ul>
+          </div>
+        )}
         <div className="card" style={{ width: '100%', height: '100%', overflow: 'hidden', padding: 0 }}>
           <svg ref={svgRef} width="100%" height="100%" />
         </div>

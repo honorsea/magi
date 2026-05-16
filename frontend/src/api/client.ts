@@ -71,7 +71,7 @@ export const api = {
 
   // Outputs
   outputs: {
-    list: (subdir?: string) => request<any[]>(`/outputs/${subdir ? `?subdir=${subdir}` : ''}`),
+    list: (subdir?: string) => request<{ files: any[]; meta?: any }>(`/outputs/${subdir ? `?subdir=${subdir}` : ''}`),
     downloadUrl: (path: string) => `/api/outputs/download/${path}`,
     preview: (path: string) => request<{ name: string; content: string; truncated: boolean }>(`/outputs/preview/${path}`),
     delete: (path: string) => request(`/outputs/${path}`, { method: 'DELETE' }),
