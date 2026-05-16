@@ -95,8 +95,8 @@ export const SimulationPage: React.FC = () => {
       {/* Error banner */}
       {isError && activeSession.error_msg && (
         <div style={{
-          padding: '12px 16px', borderRadius: '8px', background: 'hsl(0,60%,97%)',
-          border: '1px solid hsl(0,60%,85%)', color: 'var(--accent-red)',
+          padding: '12px 16px', borderRadius: '8px', background: 'var(--status-error-bg)',
+          border: '1px solid var(--status-error-border)', color: 'var(--accent-red)',
           display: 'flex', alignItems: 'flex-start', gap: '10px', flexShrink: 0
         }}>
           <AlertTriangle size={18} style={{ flexShrink: 0, marginTop: '1px' }} />
