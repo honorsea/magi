@@ -38,13 +38,22 @@ export const OutputsPage: React.FC = () => {
   const [previewContent, setPreviewContent] = useState<{ content: string; truncated: boolean } | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [malformed, setMalformed] = useState<string | null>(null);
+  const [responseMeta, setResponseMeta] = useState<any>(null);
 
   const fetchFiles = async () => {
     setLoading(true);
     setError(null);
+    setMalformed(null);
     try {
       const data = await api.outputs.list();
-      setFiles(data);
+      if (!data || !Array.isArray(data.files)) {
+        setMalformed('Expected response shape: { files: FileEntry[], meta?: object }.');
+        setFiles([]);
+      } else {
+        setFiles(data.files);
+      }
+      setResponseMeta(data?.meta ?? null);
     } catch (err: any) {
       setError(err.message);
     }
@@ -123,10 +132,19 @@ export const OutputsPage: React.FC = () => {
           </div>
         ) : loading && files.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-secondary)' }}>Loading files…</div>
+        ) : malformed ? (
+          <div style={{ padding: '16px', background: 'hsl(35,100%,96%)', border: '1px solid hsl(35,70%,80%)', borderRadius: '8px', color: 'hsl(35,80%,28%)' }}>
+            <AlertCircle size={18} style={{ verticalAlign: 'middle', marginRight: '8px' }} />
+            Malformed API payload: {malformed}
+          </div>
         ) : filtered.length === 0 ? (
           <div className="card" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)' }}>
             <FileText size={48} style={{ opacity: 0.2, marginBottom: '16px' }} />
             <div>No files found matching "{search}"</div>
+            <div style={{ marginTop: '12px', fontSize: '12px', textAlign: 'left', display: 'inline-block' }}>
+              <div><strong>Configured outputs root:</strong> <code>{responseMeta?.outputs_root ?? 'unknown'}</code></div>
+              <div><strong>API metadata:</strong> <code>{JSON.stringify(responseMeta ?? { note: 'No metadata provided' })}</code></div>
+            </div>
           </div>
         ) : (
           <div className="card" style={{ flex: 1, overflowY: 'auto', padding: 0 }}>
