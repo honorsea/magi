@@ -9,6 +9,7 @@ interface Message {
   id: string;
   role: 'user' | 'agent' | 'tool' | 'system';
   content: string;
+  simId: string;
   toolName?: string;
   toolArgs?: any;
   toolResult?: any;
@@ -111,8 +112,9 @@ const MessageBubble: React.FC<{ msg: Message }> = ({ msg }) => {
 // ── Agent Page ─────────────────────────────────────────────────────────────────
 
 export const AgentPage: React.FC = () => {
-  const { sessions, fetchSessions, ws } = useSimStore();
+  const { sessions, fetchSessions, ws, activeSessionId, setActiveSession } = useSimStore();
   const [messages, setMessages] = useState<Message[]>([]);
+  const [messagesBySim, setMessagesBySim] = useState<Record<string, Message[]>>({});
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [shortcuts, setShortcuts] = useState<Shortcut[]>([]);
@@ -133,41 +135,112 @@ export const AgentPage: React.FC = () => {
     }
   }, [runningSims]);
 
+  const appendMessage = (simId: string, partial: Omit<Message, 'id' | 'timestamp' | 'simId'>) => {
+    const nextMessage: Message = {
+      ...partial,
+      simId,
+      id: `${Date.now()}-${Math.random()}`,
+      timestamp: Date.now()
+    };
+    setMessagesBySim(prev => {
+      const next = [...(prev[simId] || []), nextMessage];
+      return { ...prev, [simId]: next };
+    });
+  };
+
   useEffect(() => {
-    // Subscribe to agent events via WebSocket
-    if (!ws) return;
+    if (!selectedSim || activeSessionId === selectedSim) return;
+    setActiveSession(selectedSim);
+  }, [selectedSim, activeSessionId, setActiveSession]);
+
+  useEffect(() => {
+    // Subscribe to events from active simulation websocket and gate by sim id.
+    if (!ws || !selectedSim) return;
     const cleanup = ws.onMessage((msg: any) => {
+      const eventSimId = msg?.sim_id ?? msg?.data?.sim_id ?? activeSessionId ?? selectedSim;
+      if (!eventSimId || eventSimId !== selectedSim) return;
+
       if (msg.type === 'agent_thinking' || msg.type === 'thinking') {
-        appendMessage({ role: 'agent', content: msg.data.text, simTime: msg.data.sim_time_s });
+        appendMessage(eventSimId, { role: 'agent', content: msg.data.text, simTime: msg.data.sim_time_s });
       } else if (msg.type === 'tool_call') {
-        appendMessage({ role: 'tool', content: '', toolName: msg.data.name, toolArgs: msg.data.args });
+        appendMessage(eventSimId, { role: 'tool', content: '', toolName: msg.data.name, toolArgs: msg.data.args });
       } else if (msg.type === 'tool_result') {
         // Attach result to last tool message
-        setMessages(prev => {
-          const last = [...prev].reverse().find(m => m.role === 'tool' && m.toolName === msg.data.name && !m.toolResult);
+        setMessagesBySim(prev => {
+          const simMessages = prev[eventSimId] || [];
+          const last = [...simMessages].reverse().find(m => m.role === 'tool' && m.toolName === msg.data.name && !m.toolResult);
           if (!last) return prev;
-          return prev.map(m => m.id === last.id ? { ...m, toolResult: msg.data.result } : m);
+          return {
+            ...prev,
+            [eventSimId]: simMessages.map(m => m.id === last.id ? { ...m, toolResult: msg.data.result } : m)
+          };
         });
       } else if (msg.type === 'agent_response' || msg.type === 'response') {
-        appendMessage({ role: 'agent', content: msg.data.text, simTime: msg.data.sim_time_s });
+        appendMessage(eventSimId, { role: 'agent', content: msg.data.text, simTime: msg.data.sim_time_s });
       } else if (msg.type === 'agent_error') {
-        appendMessage({ role: 'system', content: `⚠ Agent error: ${msg.data.error}` });
+        appendMessage(eventSimId, { role: 'system', content: `⚠ Agent error: ${msg.data.error}` });
       }
     });
     return () => { cleanup(); };
-  }, [ws]);
+  }, [ws, selectedSim, activeSessionId]);
+
+  useEffect(() => {
+    setMessages(selectedSim ? (messagesBySim[selectedSim] || []) : []);
+  }, [selectedSim, messagesBySim]);
+
+  useEffect(() => {
+    if (!selectedSim) {
+      setMessages([]);
+      return;
+    }
+    const loadTrace = async () => {
+      try {
+        const data = await api.agent.getTrace(selectedSim);
+        const restored: Message[] = [];
+        for (const trace of data.traces || []) {
+          for (const entry of trace.entries || []) {
+            if (entry.user_message) {
+              restored.push({
+                id: `${selectedSim}-trace-u-${trace.cycle_num}-${restored.length}`,
+                role: 'user',
+                content: entry.user_message,
+                simId: selectedSim,
+                timestamp: Math.floor((trace.recorded_at || 0) * 1000),
+                simTime: entry.sim_time_s ?? trace.sim_time_s
+              });
+            }
+            if (entry.agent_text) {
+              restored.push({
+                id: `${selectedSim}-trace-a-${trace.cycle_num}-${restored.length}`,
+                role: 'agent',
+                content: entry.agent_text,
+                simId: selectedSim,
+                timestamp: Math.floor((trace.recorded_at || 0) * 1000),
+                simTime: entry.sim_time_s ?? trace.sim_time_s
+              });
+            }
+          }
+        }
+        setMessagesBySim(prev => ({ ...prev, [selectedSim]: restored }));
+      } catch (err: any) {
+        setMessagesBySim(prev => ({
+          ...prev,
+          [selectedSim]: [...(prev[selectedSim] || []), {
+            id: `${selectedSim}-trace-error-${Date.now()}`,
+            role: 'system',
+            content: `⚠ Failed to load trace history: ${err.message}`,
+            simId: selectedSim,
+            timestamp: Date.now()
+          }]
+        }));
+      }
+    };
+    loadTrace();
+  }, [selectedSim]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
-  const appendMessage = (partial: Omit<Message, 'id' | 'timestamp'>) => {
-    setMessages(prev => [...prev, {
-      ...partial,
-      id: `${Date.now()}-${Math.random()}`,
-      timestamp: Date.now()
-    }]);
-  };
 
   const loadShortcuts = async () => {
     try {
@@ -181,14 +254,14 @@ export const AgentPage: React.FC = () => {
     if (!text.trim() || !selectedSim || sending) return;
     setSending(true);
 
-    appendMessage({ role: 'user', content: text.trim() });
+    appendMessage(selectedSim, { role: 'user', content: text.trim() });
     setInput('');
 
     try {
       await api.agent.sendMessage(selectedSim, text.trim());
-      appendMessage({ role: 'system', content: 'Message delivered to agent. Response will appear when the next monitoring cycle runs.' });
+      appendMessage(selectedSim, { role: 'system', content: 'Message delivered to agent. Response will appear when the next monitoring cycle runs.' });
     } catch (err: any) {
-      appendMessage({ role: 'system', content: `⚠ Failed to send: ${err.message}` });
+      appendMessage(selectedSim, { role: 'system', content: `⚠ Failed to send: ${err.message}` });
     }
     setSending(false);
     inputRef.current?.focus();
