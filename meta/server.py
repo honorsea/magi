@@ -6,19 +6,37 @@ CORS, static file serving, and startup/shutdown lifecycle hooks.
 """
 
 import asyncio
+import logging
+import os
+import re
 from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from magi.meta.services import db as _db
 from magi.meta.services import settings_store
 from magi.meta.services.sim_manager import get_manager
 
+logger = logging.getLogger(__name__)
+
 # Path to built frontend static files
 _STATIC_DIR = Path(__file__).parent / "static"
+_BUILD_HASH_PATTERN = re.compile(r'<meta\s+name="magi-build-hash"\s+content="([^"]+)"')
+
+
+def _read_served_build_hash() -> str:
+    """Read the stamped frontend build hash from meta/static/index.html."""
+    index_path = _STATIC_DIR / "index.html"
+    if not index_path.exists():
+        return "missing"
+
+    match = _BUILD_HASH_PATTERN.search(index_path.read_text(encoding="utf-8"))
+    if not match:
+        return "unstamped"
+    return match.group(1)
 
 
 def create_app() -> FastAPI:
@@ -50,6 +68,7 @@ def create_app() -> FastAPI:
         await settings_store.load()
         # Give the simulation manager the current asyncio event loop
         get_manager().set_loop(asyncio.get_event_loop())
+        logger.info("Serving frontend build hash: %s", _read_served_build_hash())
 
     @app.on_event("shutdown")
     async def _shutdown():
@@ -86,7 +105,16 @@ def create_app() -> FastAPI:
 
     # ── Serve frontend SPA (must be LAST — catches all non-API routes) ────────
     _assets_dir = _STATIC_DIR / "assets"
-    if _STATIC_DIR.exists() and _assets_dir.exists():
+    use_vite_dev_server = os.getenv("MAGI_UI_DEV", "").lower() in {"1", "true", "yes"}
+    if use_vite_dev_server:
+        @app.get("/{full_path:path}", include_in_schema=False)
+        async def serve_dev_proxy_hint(full_path: str):
+            return {
+                "message": "MAGI Dashboard API is running in dev UI mode.",
+                "docs": "/api/docs",
+                "frontend": "Use Vite dev server at http://localhost:5173 (proxying to backend).",
+            }
+    elif _STATIC_DIR.exists() and _assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(_assets_dir)), name="assets")
 
         @app.get("/{full_path:path}", include_in_schema=False)
