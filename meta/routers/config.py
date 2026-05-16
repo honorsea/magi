@@ -22,8 +22,11 @@ async def get_all_settings():
 @router.put("/settings", response_model=GenericResponse)
 async def update_settings(req: UpdateSettingsRequest):
     """Update one or more dashboard settings."""
-    await settings_store.set_many(req.updates)
-    return GenericResponse(status="success", message="Settings updated")
+    try:
+        await settings_store.set_many(req.updates)
+        return GenericResponse(status="success", message="Settings updated")
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 @router.post("/settings/reset", response_model=GenericResponse)
