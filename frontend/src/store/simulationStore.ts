@@ -2,12 +2,15 @@ import { create } from 'zustand';
 import { api } from '../api/client';
 import type { SimulationSession } from '../api/types';
 import { SimWebSocket } from '../api/websocket';
+import { useKpiStore } from './kpiStore';
 
 interface SimulationState {
   sessions: SimulationSession[];
   activeSessionId: string | null;
   activeSession: SimulationSession | null;
   ws: SimWebSocket | null;
+  taskRecords: any[];
+  physioRecords: any[];
   
   // Actions
   fetchSessions: () => Promise<void>;
@@ -24,6 +27,8 @@ export const useSimStore = create<SimulationState>((set, get) => ({
   activeSessionId: null,
   activeSession: null,
   ws: null,
+  taskRecords: [],
+  physioRecords: [],
 
   fetchSessions: async () => {
     try {
@@ -41,13 +46,24 @@ export const useSimStore = create<SimulationState>((set, get) => ({
   },
 
   setActiveSession: async (id: string | null) => {
+    const previousSessionId = get().activeSessionId;
     const currentWs = get().ws;
     if (currentWs) {
       currentWs.disconnect();
     }
 
+    if (!id || previousSessionId !== id) {
+      useKpiStore.getState().reset();
+    }
+
     if (!id) {
-      set({ activeSessionId: null, activeSession: null, ws: null });
+      set({
+        activeSessionId: null,
+        activeSession: null,
+        ws: null,
+        taskRecords: [],
+        physioRecords: []
+      });
       return;
     }
 
@@ -55,8 +71,31 @@ export const useSimStore = create<SimulationState>((set, get) => ({
       const session = await api.sim.get(id);
       const ws = new SimWebSocket(id);
       ws.connect();
+
+      ws.onMessage((msg: any) => {
+        if (msg.type === 'kpi_snapshot') {
+          const kpiPayload = msg.data ?? {};
+          const sim_time_s = kpiPayload.sim_time_s ?? 0;
+          useKpiStore.getState().updateKpis(kpiPayload, sim_time_s);
+          return;
+        }
+
+        if (msg.type === 'sim_complete' || msg.type === 'sim_stopped' || msg.type === 'sim_error') {
+          get().fetchSessions();
+          return;
+        }
+
+        if (msg.type === 'task_record') {
+          set((state) => ({ taskRecords: [...state.taskRecords, msg.data].slice(-100) }));
+          return;
+        }
+
+        if (msg.type === 'physio_record') {
+          set((state) => ({ physioRecords: [...state.physioRecords, msg.data].slice(-200) }));
+        }
+      });
       
-      set({ activeSessionId: id, activeSession: session, ws });
+      set({ activeSessionId: id, activeSession: session, ws, taskRecords: [], physioRecords: [] });
       
       // Keep fetching periodically to update status
       get().fetchSessions();
