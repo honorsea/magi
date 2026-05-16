@@ -44,6 +44,8 @@ class ConfigState:
     buffer_capacity:        int   = 5
     simulation_speed_factor:float = 1.0    # 1.0 = real-time; 60.0 = 1 sim-min per real-sec
     inter_arrival_jitter_cv:float = 0.05
+    kpi_snapshot_interval_tasks: int = 30
+    kpi_snapshot_interval_sim_s: float = 0.0
 
     # Internal RLock — guards concurrent read/write from cognitive layer thread.
     _lock: threading.RLock = field(default_factory=threading.RLock, repr=False)
@@ -68,6 +70,8 @@ class ConfigState:
                 "buffer_capacity": self.buffer_capacity,
                 "simulation_speed_factor": self.simulation_speed_factor,
                 "inter_arrival_jitter_cv": self.inter_arrival_jitter_cv,
+                "kpi_snapshot_interval_tasks": self.kpi_snapshot_interval_tasks,
+                "kpi_snapshot_interval_sim_s": self.kpi_snapshot_interval_sim_s,
             }
 
     def to_dict(self) -> Dict[str, Any]:
